@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import Image from "next/image";
 import bg from '@/public/images/bg.webp'
-import logoabstrack from '@/public/images/logoabstrack.png'
-import topabstrack from '@/public/images/topabstrack.png'
-import bottomabstrack from '@/public/images/bottomabstrack.png'
-import leftabstrack from '@/public/images/leftabstrack.png'
-import rightabstrack from '@/public/images/rightabstrack.png'
-import textabstrack from '@/public/images/textabstrack.png'
-import sokabstrack from '@/public/images/sokabstrack.png'
+import logoabstrack from '@/public/images/logoabstrack.webp'
+import topabstrack from '@/public/images/topabstrack.webp'
+import bottomabstrack from '@/public/images/bottomabstrack.webp'
+import leftabstrack from '@/public/images/leftabstrack.webp'
+import rightabstrack from '@/public/images/rightabstrack.webp'
+import textabstrack from '@/public/images/textabstrack.webp'
+import sokabstrack from '@/public/images/sokabstrack.webp'
 import styles from './section1.module.css'
 
 export default function Section1() {
