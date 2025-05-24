@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from "next/image";
-import bg from '@/public/images/bg.png'
+import bg from '@/public/images/bg.webp'
 import logoabstrack from '@/public/images/logoabstrack.png'
 import topabstrack from '@/public/images/topabstrack.png'
 import bottomabstrack from '@/public/images/bottomabstrack.png'
