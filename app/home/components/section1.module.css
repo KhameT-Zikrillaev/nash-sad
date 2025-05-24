@@ -1,0 +1,22 @@
+.sectionClip {
+  clip-path: ellipse(55% 100% at 50% 0%);
+  
+}
+@media (max-width: 600px) {
+  .sectionClip {
+    clip-path: ellipse(75% 100% at 50% 0%);
+  }
+}
+
+.shadowBottomEllipse {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -18px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 5;
+  filter: blur(18px);
+  opacity: 0.52;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 100%);
+}
