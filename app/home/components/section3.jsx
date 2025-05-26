@@ -3,8 +3,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
-import leftabastrack from '@/public/images/left-abstrack.png';
-import rightabastrack1 from '@/public/images/right-1-abstrack.png';
+import leftabastrack from '@/public/images/left-abstrack.webp';
+import rightabastrack1 from '@/public/images/right-1-abstrack.webp';
 import section3photo1 from '@/public/images/section3photo1.png';
 import section3photo3 from '@/public/images/section3photo3.png';
 
