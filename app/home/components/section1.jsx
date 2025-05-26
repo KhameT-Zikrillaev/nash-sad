@@ -12,6 +12,8 @@ import textabstrack from '@/public/images/textabstrack.webp'
 import sokabstrack from '@/public/images/sokabstrack.webp'
 import styles from './section1.module.css'
 
+import { useState } from 'react';
+
 export default function Section1() {
   // Настройки жесткой пружины для "дергания"
   const aggressiveSpring = {
@@ -21,11 +23,14 @@ export default function Section1() {
     velocity: 10
   };
 
+  // Состояние загрузки фоновой картинки
+  const [bgLoaded, setBgLoaded] = useState(false);
+
   return (
     <section className="w-full flex   relative top-[100px] sm:top-[0px] justify-center items-end bg-white h-[300px] sm:h-[420px] xl:h-[500px] xl:h-[700px]" >
        <motion.div
           initial={{ y: -300, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={bgLoaded ? { y: 0, opacity: 1 } : { y: -300, opacity: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{ position: 'absolute', inset: 0, zIndex: 1 }}
         >
@@ -39,6 +44,7 @@ export default function Section1() {
             fill
             style={{objectFit: 'cover'}}
             priority
+            onLoadingComplete={() => setBgLoaded(true)}
           />
           <div className={styles.shadowBottomEllipse}></div>
      
