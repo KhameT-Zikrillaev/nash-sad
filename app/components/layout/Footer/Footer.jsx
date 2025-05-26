@@ -2,7 +2,7 @@
 
 import React from 'react'
 import footerbg from '@/public/images/footerbg.png'
-import footerfruitphoto from '@/public/images/footerfruitphoto.png'
+import footerfruitphoto from '@/public/images/footerfruitphoto.webp'
 import logogreen from '@/public/images/logogreen.png'
 import callphoto from '@/public/images/callphoto.png'
 import Image from 'next/image'

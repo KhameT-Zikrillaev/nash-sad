@@ -4,10 +4,10 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import Image from 'next/image';
 import photo1 from '@/public/images/250format.webp';
-import photo2 from '@/public/images/125format.png';
+import photo2 from '@/public/images/125format.webp';
 import rightabastrack2 from '@/public/images/right-2-abstrack.png';
-import onesok from '@/public/images/onesok.png'
-import onekaronsok from '@/public/images/onekaronsok.png'
+import onesok from '@/public/images/onesok.webp'
+import onekaronsok from '@/public/images/onekaronsok.webp'
 export default function Section2() {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
