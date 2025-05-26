@@ -13,8 +13,8 @@ export default function Navbar() {
 
   // Анимация для пунктов меню
   const menuItems = [
-    { text: 'ISHLAB CHIQARISH', path: '/production', delay: 0.4 },
-    { text: 'MAHSULOTLAR', path: '/products', delay: 0.5 },
+    { text: 'ISHLAB CHIQARISH', path: '#production', delay: 0.4 },
+    { text: 'MAHSULOTLAR', path: '#products', delay: 0.5 },
     { text: 'YANGILIKLAR', path: '#news', delay: 0.6 },
     { text: "BOG'LANISH", path: '#contact', delay: 0.7 }
   ];
