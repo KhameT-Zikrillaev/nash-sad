@@ -13,10 +13,10 @@ export default function Navbar() {
 
   // Анимация для пунктов меню
   const menuItems = [
-    { text: 'ISHLAB CHIQARISH', delay: 0.4 },
-    { text: 'MAHSULOTLAR', delay: 0.5 },
-    { text: 'YANGILIKLAR', delay: 0.6 },
-    { text: "BOG'LANISH", delay: 0.7 }
+    { text: 'ISHLAB CHIQARISH', path: '/production', delay: 0.4 },
+    { text: 'MAHSULOTLAR', path: '/products', delay: 0.5 },
+    { text: 'YANGILIKLAR', path: '#news', delay: 0.6 },
+    { text: "BOG'LANISH", path: '#contact', delay: 0.7 }
   ];
 
   // Варианты анимации
@@ -67,7 +67,7 @@ export default function Navbar() {
                 className="hover:text-blue-200 transition cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
-                {menuItem.text}
+                <a href={menuItem.path}>{menuItem.text}</a>
               </motion.li>
             ))}
           </motion.ul>

@@ -84,7 +84,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className='footer relative w-full -mt-[160px]'>
+      <footer id='contact' className='footer relative w-full -mt-[160px]'>
         {/* Анимированный фрукт с новой анимацией сверху вниз */}
         <motion.div
           initial="hidden"
