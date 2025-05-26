@@ -213,23 +213,31 @@ export default function Section1() {
         {/* <div className="relative z-10 w-full h-full flex justify-center items-end">
           
         </div> */}
-          <div className='container w-full h-[400px]  -bottom-[150px] sm:-bottom-[130px] md:-bottom-[120px] relative z-50'>
-                {/* Перевёрнутый SVG с длинными черными линиями */}
-                <svg
-                    className="absolute left-0 top-0 w-full h-full rotate-180"
-                    viewBox="0 0 1000 400"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d={pathData}
-                        stroke="#bdc3c7"
-                        strokeWidth="6"
-                        strokeDasharray="180 40"
-                        strokeLinecap="round"
-                    />
-                </svg>
-           </div>
+             <motion.div 
+      className='container w-full h-[400px] -bottom-[150px] sm:-bottom-[130px] md:-bottom-[120px] relative z-50'
+      initial={{ opacity: 0}}
+      animate={{ opacity: 1 }}
+      transition={{ 
+        delay: 2, // Задержка 3 секунды
+        duration: 1 // Длительность анимации 1 секунда
+      }}
+    >
+      {/* Перевёрнутый SVG с длинными черными линиями */}
+      <svg
+        className="absolute left-0 top-0 w-full h-full rotate-180"
+        viewBox="0 0 1000 400"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d={pathData}
+          stroke="#bdc3c7"
+          strokeWidth="6"
+          strokeDasharray="180 40"
+          strokeLinecap="round"
+        />
+      </svg>
+    </motion.div>
       </div>
       </motion.div>
     </section>
