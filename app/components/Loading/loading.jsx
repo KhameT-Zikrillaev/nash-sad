@@ -237,7 +237,7 @@ export default function Loading() {
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ 
-            duration: 4,
+            duration: 3,
             ease: "easeInOut",
           }}
         />
