@@ -47,20 +47,7 @@ const UltraNewsPage = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Анимации
-  const waveVariants = {
-    animate: {
-      x: ["0%", "-50%"],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 20,
-          ease: "linear"
-        }
-      }
-    }
-  };
+
 
   const cardVariants = {
     offscreen: {
@@ -92,55 +79,24 @@ const UltraNewsPage = () => {
     })
   };
 
-  const title = "Yangiliklar";
-  const letters = Array.from(title);
+
 
   return (
-    <div id="news" className="relative  overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+    <div  className="relative  overflow-hidden bg-gradient-to-b from-gray-50 to-white">
       {/* Анимированный фон */}
       <motion.div 
         className="absolute top-0 left-0 w-[200%] h-full bg-repeat-x"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='60' viewBox='0 0 200 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q25 10 50 30 T100 30 T150 30 T200 30' stroke='%2332ba4e' fill='none' stroke-width='2' opacity='0.2'/%3E%3C/svg%3E")`
-        }}
-        variants={waveVariants}
-        animate="animate"
       />
 
       {/* Основной контент */}
       <motion.section 
         ref={containerRef}
         style={{ y }}
-        className="relative z-10 pt-32 pb-2 md:pb-20 px-4"
+        className="relative z-10 pt-4 md:pt-16 pb-2 md:pb-20 px-4"
       >
         <div className="container mx-auto max-w-6xl">
           {/* Заголовок */}
-          <motion.h1
-            ref={titleRef}
-            className="text-5xl md:text-6xl font-extrabold text-center mb-16 text-gray-900"
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
-            <div className="flex justify-center">
-              {letters.map((letter, i) => (
-                <motion.span
-                  key={i}
-                  custom={i}
-                  variants={letterVariants}
-                  className="inline-block"
-                >
-                  {letter === ' ' ? '\u00A0' : letter}
-                </motion.span>
-              ))}
-            </div>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: isInView ? 1 : 0 }}
-              transition={{ delay: letters.length * 0.05 + 0.2, duration: 0.8 }}
-              className="h-1.5 bg-[#32ba4e] mt-4 origin-left"
-              style={{ width: '200px' }}
-            />
-          </motion.h1>
+           <h1 className="text-center text-4xl font-bold text-green-800 mb-4">Yangiliklar</h1>
 
           {/* Карточки новостей */}
           <div className="grid gap-4 md:gap-8">
