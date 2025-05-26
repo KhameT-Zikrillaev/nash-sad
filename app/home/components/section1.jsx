@@ -12,10 +12,27 @@ import textabstrack from '@/public/images/textabstrack.webp'
 import sokabstrack from '@/public/images/sokabstrack.webp'
 import styles from './section1.module.css'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Section1() {
   // Настройки жесткой пружины для "дергания"
+  const [pathData, setPathData] = useState("M 100 230 C 350 130, 650 130, 900 230");
+    
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setPathData("M 100 230 C 350 100, 650 100, 900 230");
+         
+            } else {
+                setPathData("M 100 230 C 350 130, 650 130, 900 230");
+            }
+        };
+        
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Инициализация
+        
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
   const aggressiveSpring = {
     type: "spring",
     stiffness: 300,
@@ -35,7 +52,7 @@ export default function Section1() {
           style={{ position: 'absolute', inset: 0, zIndex: 1 }}
         >
       <div
-        className={`relative  w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[420px] xl:h-[500px] xl:h-[700px] overflow-hidden flex justify-center items-end ${styles.sectionClip}`}
+        className={`relative  w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[400px] xl:h-[500px] xl:h-[700px] overflow-hidden flex justify-center items-end ${styles.sectionClip}`}
       >
        
           <Image
@@ -193,9 +210,26 @@ export default function Section1() {
           </motion.div>
         </div>
 
-        <div className="relative z-10 w-full h-full flex justify-center items-end">
-          {/* Ваш контент */}
-        </div>
+        {/* <div className="relative z-10 w-full h-full flex justify-center items-end">
+          
+        </div> */}
+          <div className='container w-full h-[400px]  -bottom-[150px] sm:-bottom-[130px] md:-bottom-[120px] relative z-50'>
+                {/* Перевёрнутый SVG с длинными черными линиями */}
+                <svg
+                    className="absolute left-0 top-0 w-full h-full rotate-180"
+                    viewBox="0 0 1000 400"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d={pathData}
+                        stroke="#bdc3c7"
+                        strokeWidth="6"
+                        strokeDasharray="180 40"
+                        strokeLinecap="round"
+                    />
+                </svg>
+           </div>
       </div>
       </motion.div>
     </section>
