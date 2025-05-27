@@ -33,7 +33,7 @@ export default function CompactProduction() {
   ];
 
   return (
-    <section id="production" className="py-16  bg-gradient-to-b from-green-50 to-white">
+    <section id="production" className="pt-16 pb-64 md:mt-[164px] mt-[80px] min-h-screen overflow-hidden  bg-gradient-to-b from-green-50 to-white">
       <div className="container mx-auto px-4">
         {/* Заголовок */}
         <motion.div

@@ -82,7 +82,7 @@ const UltraNewsPage = () => {
 
 
   return (
-    <div  className="relative  overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+    <div  className="relative md:mt-[164px] mt-[80px] min-h-screen overflow-hidden bg-gradient-to-b from-gray-50 to-white">
       {/* Анимированный фон */}
       <motion.div 
         className="absolute top-0 left-0 w-[200%] h-full bg-repeat-x"

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logowhite from '@/public/images/logowhite.png';
 import Image from 'next/image';
-
+import Link from 'next/link';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState('UZ');
@@ -13,9 +13,9 @@ export default function Navbar() {
 
   // Анимация для пунктов меню
   const menuItems = [
-    { text: 'ISHLAB CHIQARISH', path: '#production', delay: 0.4 },
+    { text: 'ISHLAB CHIQARISH', path: '/production', delay: 0.4 },
     { text: 'MAHSULOTLAR', path: '#products', delay: 0.5 },
-    { text: 'YANGILIKLAR', path: '#news', delay: 0.6 },
+    { text: 'YANGILIKLAR', path: '/news', delay: 0.6 },
     { text: "BOG'LANISH", path: '#contact', delay: 0.7 }
   ];
 
@@ -67,7 +67,7 @@ export default function Navbar() {
                 className="hover:text-blue-200 transition cursor-pointer"
                 whileHover={{ scale: 1.05 }}
               >
-                <a href={menuItem.path}>{menuItem.text}</a>
+                <Link href={menuItem.path}>{menuItem.text}</Link>
               </motion.li>
             ))}
           </motion.ul>

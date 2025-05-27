@@ -7,9 +7,31 @@ import logogreen from '@/public/images/logogreen.png'
 import callphoto from '@/public/images/callphoto.png'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-
+import { usePathname } from 'next/navigation'
 export default function Footer() {
+  const pathname = usePathname()
   // Анимация для фрукта (теперь сверху вниз)
+  const fruitAnimations = {
+    hidden: { 
+      opacity: 0, 
+      y: -250, 
+      rotate: 15,
+      scale: 0.7
+    },
+    visible: {
+      opacity: 1, 
+      y: 0, 
+      rotate: 0,
+      scale: 1,
+      transition: { 
+        type: 'spring', 
+        stiffness: 570, 
+        damping: 12,
+        delay: 1,
+        mass: 0.8
+      }
+    }
+  }
   const fruitAnimation = {
     hidden: { 
       opacity: 0, 
@@ -86,11 +108,12 @@ export default function Footer() {
     <>
       <footer id='contact' className='footer relative w-full -mt-[160px]'>
         {/* Анимированный фрукт с новой анимацией сверху вниз */}
+        {pathname === '/' && (
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={fruitAnimation}
+          variants={fruitAnimations}
           className='absolute -mt-[260px] z-10 sm:-mt-[100px] w-[160px] sm:w-[350px] xl:w-[400px] left-[calc(50%-80px)] sm:left-[-2%] md:left-[-3%] lg:left-[-0%] xl:left-[9%] sm:top-[-105px] md:top-[-45px] xl:top-[15px] z-0'
         >
           <Image 
@@ -99,6 +122,7 @@ export default function Footer() {
             className='w-full h-auto'
           />
         </motion.div>
+      )}
 
         {/* Основная карточка с анимацией */}
         <motion.div
