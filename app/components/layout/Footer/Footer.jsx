@@ -130,7 +130,7 @@ export default function Footer() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={cardAnimation}
-          className="w-[90%] sm:max-w-[600px] mx-auto sm:w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col md:flex-row justify-between items-center relative z-10 bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-2xl shadow-green-100/50 border border-green-100 overflow-hidden"
+          className="w-[90%] mb-16 sm:mb-0 sm:max-w-[600px] mx-auto sm:w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col md:flex-row justify-between items-center relative z-10 bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-2xl shadow-green-100/50 border border-green-100 overflow-hidden"
         >
           {/* Декоративные элементы */}
           <motion.div 
@@ -239,7 +239,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Декоративные элементы */}
-        <div className="fixed inset-0 -z-10 overflow-hidden">
+        {/* <div className="fixed inset-0 -z-10 overflow-hidden">
           <motion.div 
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.1 }}
@@ -252,7 +252,7 @@ export default function Footer() {
             transition={{ delay: 0.8, duration: 1.5 }}
             className="absolute top-3/4 right-1/4 w-96 h-96 rounded-full bg-green-300/10 blur-3xl"
           />
-        </div>
+        </div> */}
 
         {/* Фоновое изображение */}
         <motion.div 
