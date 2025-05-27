@@ -79,7 +79,7 @@ export default function CompactProduction() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+         
           className="mb-16"
         >
           <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Наш Завод</h2>

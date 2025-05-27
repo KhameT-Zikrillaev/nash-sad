@@ -14,7 +14,7 @@ export default function Navbar() {
   // Анимация для пунктов меню
   const menuItems = [
     { text: 'ISHLAB CHIQARISH', path: '/production', delay: 0.4 },
-    { text: 'MAHSULOTLAR', path: '#products', delay: 0.5 },
+    { text: 'MAHSULOTLAR', path: '/products', delay: 0.5 },
     { text: 'YANGILIKLAR', path: '/news', delay: 0.6 },
     { text: "BOG'LANISH", path: '#contact', delay: 0.7 }
   ];
@@ -48,7 +48,9 @@ export default function Navbar() {
           transition={{ type: 'spring', stiffness: 100, damping: 10 }}
           className="font-bold absolute md:static text-2xl text-white pt-3 mt-0 md:pt-0 md:mt-4 md:mb-2 select-none text-center"
         >
+          <Link href="/">
           <Image className='w-[60px]' src={logowhite} alt="logo" />
+          </Link>
         </motion.div>
 
         {/* Меню + LANG SELECT (десктоп) */}
@@ -173,7 +175,7 @@ export default function Navbar() {
                       className="hover:text-blue-200 transition cursor-pointer py-4 pl-10 pr-2 hover:bg-white/10 font-bold text-xl border-b border-white/30"
                       onClick={() => setMenuOpen(false)}
                     >
-                      {menuItem.text}
+                      <Link href={menuItem.path}>{menuItem.text}</Link>
                     </motion.li>
                   ))}
                 </motion.ul>
