@@ -20,14 +20,14 @@ export default function RootLayout({ children }) {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const MIN_LOAD_TIME = 3000; // 2 секунды
+    const MIN_LOAD_TIME = 4000; // 4 секунды
     const startTime = Date.now();
 
     const handleLoad = () => {
       const elapsed = Date.now() - startTime;
       const remainingTime = MIN_LOAD_TIME - elapsed;
 
-      // Гарантируем минимум 2 секунды
+      // Гарантируем минимум 4 секунды
       const delay = remainingTime > 0 ? remainingTime : 0;
 
       setTimeout(() => setShowLoader(false), delay);
