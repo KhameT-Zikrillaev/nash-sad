@@ -3,14 +3,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import n from '@/public/images/logo/n.png'
-import a from '@/public/images/logo/a.png'
-import sh from '@/public/images/logo/sh.png'
-import s from '@/public/images/logo/s.png'
-import a2 from '@/public/images/logo/a2.png'
-import d from '@/public/images/logo/d.png'
-import b from '@/public/images/logo/b.png'
-import b2 from '@/public/images/logo/b2.png'
+import n from '@/public/images/logo/n.webp'
+import a from '@/public/images/logo/a.webp'
+import sh from '@/public/images/logo/sh.webp'
+import s from '@/public/images/logo/s.webp'
+import a2 from '@/public/images/logo/a2.webp'
+import d from '@/public/images/logo/d.webp'
+import b from '@/public/images/logo/b.webp'
+import b2 from '@/public/images/logo/b2.webp'
 
 export default function Loading() {
   // Последовательность появления элементов
