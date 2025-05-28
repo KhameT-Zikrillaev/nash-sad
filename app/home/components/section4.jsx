@@ -20,7 +20,7 @@ export default function Section4() {
   return (
     <>
     
-    <div className="section-4 relative z-10 mt-[30px] py-10 bg-[#32ba4e]">
+    <div className="section-4 relative z-50 mt-[30px] py-10 bg-[#32ba4e]">
       <h1 className="text-2xl md:text-4xl font-bold text-center mb-8 text-white">
         Bizni ijtimoiy tarmoqlarda kuzatib boring <span className="text-lime-200">@NASH.SAD.UZ</span>
       </h1>

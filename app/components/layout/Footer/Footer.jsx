@@ -8,8 +8,10 @@ import callphoto from '@/public/images/callphoto.png'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
+
 export default function Footer() {
   const pathname = usePathname()
+
   // Анимация для фрукта (теперь сверху вниз)
   const fruitAnimations = {
     hidden: { 
@@ -19,27 +21,6 @@ export default function Footer() {
       scale: 0.7
     },
     visible: {
-      opacity: 1, 
-      y: 0, 
-      rotate: 0,
-      scale: 1,
-      transition: { 
-        type: 'spring', 
-        stiffness: 570, 
-        damping: 12,
-        delay: 1,
-        mass: 0.8
-      }
-    }
-  }
-  const fruitAnimation = {
-    hidden: { 
-      opacity: 0, 
-      y: -250, 
-      rotate: 15,
-      scale: 0.7
-    },
-    visible: { 
       opacity: 1, 
       y: 0, 
       rotate: 0,
@@ -109,26 +90,27 @@ export default function Footer() {
       <footer id='contact' className='footer relative w-full -mt-[160px]'>
         {/* Анимированный фрукт с новой анимацией сверху вниз */}
         {pathname === '/' && (
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fruitAnimations}
-          className='absolute -mt-[260px] z-10 sm:-mt-[100px] w-[160px] sm:w-[350px] xl:w-[400px] left-[calc(50%-80px)] sm:left-[-2%] md:left-[-3%] lg:left-[-0%] xl:left-[9%] sm:top-[-105px] md:top-[-45px] xl:top-[15px] z-0'
-        >
-          <Image 
-            src={footerfruitphoto} 
-            alt="section4photo" 
-            className='w-full h-auto'
-          />
-        </motion.div>
-      )}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}  // Изменено на false для повторной анимации
+            variants={fruitAnimations}
+            className='absolute -mt-[260px] z-10 sm:-mt-[100px] w-[160px] sm:w-[350px] xl:w-[400px] left-[calc(50%-80px)] sm:left-[-2%] md:left-[-3%] lg:left-[-0%] xl:left-[9%] sm:top-[-105px] md:top-[-45px] xl:top-[15px] z-0'
+          >
+            <Image 
+              src={footerfruitphoto} 
+              alt="section4photo" 
+              className='w-full h-auto'
+              priority
+            />
+          </motion.div>
+        )}
 
         {/* Основная карточка с анимацией */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}  // Изменено на false
           variants={cardAnimation}
           className="w-[90%] mb-16 sm:mb-0 sm:max-w-[600px] mx-auto sm:w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col md:flex-row justify-between items-center relative z-10 bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-2xl shadow-green-100/50 border border-green-100 overflow-hidden"
         >
@@ -214,7 +196,7 @@ export default function Footer() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}  // Изменено на false
           variants={menuAnimation}
           className="w-[90%] hidden md:flex bg-white md:bg-transparent sm:max-w-[600px] mx-auto w-full px-4 sm:px-6 py-3 flex justify-between items-center text-green-600 relative z-10 mt-2"
         >
@@ -238,27 +220,11 @@ export default function Footer() {
           </motion.span>
         </motion.div>
 
-        {/* Декоративные элементы */}
-        {/* <div className="fixed inset-0 -z-10 overflow-hidden">
-          <motion.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.1 }}
-            transition={{ delay: 0.5, duration: 1.5 }}
-            className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-green-200/10 blur-3xl"
-          />
-          <motion.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 0.1 }}
-            transition={{ delay: 0.8, duration: 1.5 }}
-            className="absolute top-3/4 right-1/4 w-96 h-96 rounded-full bg-green-300/10 blur-3xl"
-          />
-        </div> */}
-
         {/* Фоновое изображение */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}  // Изменено на false
           variants={bgAnimation}
           className="relative w-full mt-[-400px] sm:mt-[-50px] overflow-hidden h-[50vh] sm:h-auto"
         >
@@ -274,7 +240,7 @@ export default function Footer() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}  // Изменено на false
           variants={menuAnimation}
           className="w-[90%] md:hidden bg-white sm:max-w-[600px] mx-auto w-full px-4 sm:px-6 py-3 flex justify-between items-center text-green-600 relative z-10 mt-2"
         >
