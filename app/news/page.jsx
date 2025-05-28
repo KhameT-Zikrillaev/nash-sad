@@ -183,7 +183,7 @@ const UltraNewsPage = () => {
                       >
                         <div className="relative z-50">
                           <button className="px-8 py-3 bg-gradient-to-r from-[#32ba4e] to-[#2aa441] text-white font-bold rounded-lg shadow-lg relative overflow-hidden group">
-                            <span className="relative z-10">Узнать детально звоните!</span>
+                            <span className="relative z-10">Aniqroq bilish uchun qo'g'iroq qiling!</span>
                             <motion.span
                               className="absolute inset-0 bg-gradient-to-r from-[#2aa441] to-[#32ba4e] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
                               initial={{ x: '-100%' }}
@@ -235,21 +235,21 @@ const UltraNewsPage = () => {
           </div>
 
           {/* Блок будущих новостей */}
-          <div id="future-news" className="mt-20">
+          <div id="future-news" className="my-20">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="text-center"
             >
-              <h3 className="text-2xl font-bold text-gray-700 mb-4">Следите за обновлениями!</h3>
+              <h3 className="text-2xl font-bold text-gray-700 mb-4">Yangilikdan havardor bo'ling!</h3>
               <div className="inline-flex items-center">
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                   className="w-8 h-8 border-4 border-[#32ba4e] border-t-transparent rounded-full mr-3"
                 />
-                <span className="text-gray-600">Новые события появляются здесь автоматически</span>
+                <span className="text-gray-600">Yangiliklar shu yerda chiqadi...</span>
               </div>
             </motion.div>
           </div>

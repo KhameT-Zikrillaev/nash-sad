@@ -11,44 +11,44 @@ import zavod2 from '@/public/images/zavod2.jpg'
 export default function CompactProduction() {
   const productionSteps = [
     {
-      title: "Выращивание",
-      desc: "Экологичное выращивание фруктов в наших садах",
-      img: vrasheniya // Замените на свое изображение
+      title: "O'simlik yetishtirish",
+      desc: "Bog'larimizda ekologik toza mevalar yetishtirish",
+      img: vrasheniya // O'z rasmingiz bilan almashtiring
     },
     {
-      title: "Сбор урожая",
-      desc: "Ручной сбор на пике зрелости",
-      img: zbor // Замените на свое изображение
+      title: "Hosil yig'ish",
+      desc: "Qo'lda etuklik cho'qqisida yig'ib olish",
+      img: zbor // O'z rasmingiz bilan almashtiring
     },
     {
-      title: "Обработка",
-      desc: "Современная обработка на нашем заводе",
-      img: obrobotka // Замените на свое изображение
+      title: "Qayta ishlash",
+      desc: "Zavodimizda zamonaviy qayta ishlash",
+      img: obrobotka // O'z rasmingiz bilan almashtiring
     },
     {
-      title: "Доставка",
-      desc: "Быстрая доставка свежих фруктов",
-      img: dostavka // Замените на свое изображение
+      title: "Yetkazib berish",
+      desc: "Yang mevalarni tez yetkazib berish",
+      img: dostavka // O'z rasmingiz bilan almashtiring
     }
   ];
 
   return (
     <section id="production" className="pt-16 pb-64 md:mt-[164px] mt-[80px] min-h-screen overflow-hidden  bg-gradient-to-b from-green-50 to-white">
       <div className="container mx-auto px-4">
-        {/* Заголовок */}
+        {/* Sarlavha */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-green-800 mb-4">Наше Производство</h1>
+          <h1 className="text-4xl font-bold text-green-800 mb-4">Ishlab Chiqarishimiz</h1>
           <p className="text-lg text-green-600 max-w-2xl mx-auto">
-            От сада до вашего стола - гарантия качества и натуральности
+            Bog'dan sizning stolingizgacha - sifat va tabiiylik kafolati
           </p>
         </motion.div>
 
-        {/* 4 круглых изображения с процессом */}
+        {/* Ishlab chiqarish bosqichlari (4 ta aylana rasmlar) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {productionSteps.map((step, index) => (
             <motion.div
@@ -60,7 +60,7 @@ export default function CompactProduction() {
               className="flex flex-col items-center"
             >
               <div className="relative w-48 h-48 mb-4 rounded-full overflow-hidden border-4 border-green-300 shadow-lg">
-                {/* Замените div на img для реальных изображений */}
+                {/* Haqiqiy rasmlar uchun div o'rniga img ishlating */}
                 <Image 
                   className="w-full h-full bg-cover bg-center"
                   src={step.img}
@@ -74,7 +74,7 @@ export default function CompactProduction() {
           ))}
         </div>
 
-        {/* Блок с фото завода */}
+        {/* Zavod rasmlari bloki */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -82,32 +82,32 @@ export default function CompactProduction() {
          
           className="mb-16"
         >
-          <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Наш Завод</h2>
+          <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Bizning Zavodimiz</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="rounded-2xl overflow-hidden shadow-xl h-64 bg-gray-200">
            
-             <Image src={zavod1} alt="Изображение завода 1" className="w-full h-full" />
+             <Image src={zavod1} alt="Zavod rasmi 1" className="w-full h-full" />
             </div>
             <div className="rounded-2xl overflow-hidden shadow-xl h-64 bg-gray-200">
-             <Image src={zavod2} alt="Изображение завода 2" className="w-full h-full" />
+             <Image src={zavod2} alt="Zavod rasmi 2" className="w-full h-full" />
             </div>
           </div>
         </motion.div>
 
-        {/* Преимущества в кругах */}
+        {/* Afzalliklar (aylanalarda) */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Наши Преимущества</h2>
+          <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Bizning Afzalliklarimiz</h2>
           <div className="flex flex-wrap justify-center gap-6">
             {[
-              { icon: "🌿", title: "Экологично", desc: "100% натуральные продукты" },
-              { icon: "🏆", title: "Качество", desc: "Строгий контроль на всех этапах" },
-              { icon: "🚜", title: "Собственное производство", desc: "От сада до упаковки" },
-              { icon: "💚", title: "Здоровье", desc: "Польза для вас и природы" }
+              { icon: "🌿", title: "Ekologik toza", desc: "100% tabiiy mahsulotlar" },
+              { icon: "🏆", title: "Sifat", desc: "Barcha bosqichlarda qat'iy nazorat" },
+              { icon: "🚜", title: "O'z ishlab chiqarish", desc: "Bog'dan qadoqlashgacha" },
+              { icon: "💚", title: "Sog'liq", desc: "Siz va tabiat uchun foyda" }
             ].map((item, index) => (
               <motion.div
                 key={index}

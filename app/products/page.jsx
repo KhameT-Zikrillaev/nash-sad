@@ -1,9 +1,9 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
-// ~~~~~~~~~~~~~~~~~~~~~~~ Обычные соки ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~ Oddiy sharbatlar ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import Apelsin from '@/public/images/onekaronsok.webp'
 import Grusha from '@/public/images/onekaronsok.webp'
 import Yabloko from '@/public/images/onekaronsok.webp'
@@ -11,7 +11,7 @@ import Kivi from '@/public/images/onekaronsok.webp'
 import Limon from '@/public/images/onekaronsok.webp'
 import Vishniya from '@/public/images/onekaronsok.webp'
 
-// ~~~~~~~~~~~~~~~~~~~~~~~ Коробочные соки ~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~ Qutili sharbatlar ~~~~~~~~~~~~~~~~~~~~~~~~
 import ApelsinKore from '@/public/images/onesok.webp'
 import GrushaKore from '@/public/images/onesok.webp'
 import YablokoKore from '@/public/images/onesok.webp'
@@ -19,43 +19,43 @@ import KiviKore from '@/public/images/onesok.webp'
 import LimonKore from '@/public/images/onesok.webp'
 import VishniyaKore from '@/public/images/onesok.webp'
 
-// Категории
+// Kategoriyalar
 const categories = [
-  { id: 'classic', name: 'Обычные соки' },
-  { id: 'box', name: 'Коробочные соки' }
+  { id: 'classic', name: 'Oddiy sharbatlar' },
+  { id: 'box', name: 'Qutili sharbatlar' }
 ]
 
-// Массивы для товаров
+// Mahsulotlar massivi
 const productsData = {
   classic: [
-    { id: 1, name: 'Апельсиновый сок', image: Apelsin, volume: '1 л' },
-    { id: 2, name: 'Грушевый сок', image: Grusha, volume: '1 л' },
-    { id: 3, name: 'Яблочный сок', image: Yabloko, volume: '1 л' },
-    { id: 4, name: 'Киви сок', image: Kivi, volume: '1 л' },
-    { id: 5, name: 'Лимонный сок', image: Limon, volume: '1 л' },
-    { id: 6, name: 'Вишневый сок', image: Vishniya, volume: '1 л' },
+    { id: 1, name: 'Apelsin sharbati', image: Apelsin, volume: '1 l' },
+    { id: 2, name: 'Nok sharbati', image: Grusha, volume: '1 l' },
+    { id: 3, name: 'Olma sharbati', image: Yabloko, volume: '1 l' },
+    { id: 4, name: 'Kivi sharbati', image: Kivi, volume: '1 l' },
+    { id: 5, name: 'Limon sharbati', image: Limon, volume: '1 l' },
+    { id: 6, name: 'Gilos sharbati', image: Vishniya, volume: '1 l' },
   ],
   box: [
-    { id: 1, name: 'Апельсиновый (коробка)', image: ApelsinKore, volume: '1 л' },
-    { id: 2, name: 'Грушевый (коробка)', image: GrushaKore, volume: '1 л' },
-    { id: 3, name: 'Яблочный (коробка)', image: YablokoKore, volume: '1 л' },
-    { id: 4, name: 'Киви (коробка)', image: KiviKore, volume: '1 л' },
-    { id: 5, name: 'Лимонный (коробка)', image: LimonKore, volume: '1 л' },
-    { id: 6, name: 'Вишневый (коробка)', image: VishniyaKore, volume: '1 л' },
+    { id: 1, name: 'Apelsin (qutilida)', image: ApelsinKore, volume: '1 l' },
+    { id: 2, name: 'Nok (qutilida)', image: GrushaKore, volume: '1 l' },
+    { id: 3, name: 'Olma (qutilida)', image: YablokoKore, volume: '1 l' },
+    { id: 4, name: 'Kivi (qutilida)', image: KiviKore, volume: '1 l' },
+    { id: 5, name: 'Limon (qutilida)', image: LimonKore, volume: '1 l' },
+    { id: 6, name: 'Gilos (qutilida)', image: VishniyaKore, volume: '1 l' },
   ]
 }
 
-// Полные данные с описаниями
+// To'liq mahsulot ma'lumotlari
 const fullProductsData = {
   classic: productsData.classic.map(item => ({
     ...item,
-    description: `${item.name} - натуральный сок прямого отжима без добавок, приготовленный из отборных фруктов. Сохраняет все витамины и натуральный вкус. Идеален для здорового питания.`,
-    benefits: ['Без консервантов', 'Без сахара', 'Без ГМО', 'Богат витаминами']
+    description: `${item.name} - qo'shimchalar qo'shilmagan, to'g'ridan-to'g'ri siqilgan tabiiy sharbat. Saralangan mevalardan tayyorlangan. Barcha vitaminlar va tabiiy lazzatni saqlaydi. Sog'lom ovqatlanish uchun ideal.`,
+    benefits: ['Konservantlarsiz', 'Shakarsiz', 'GMOsiz', 'Vitaminlarga boy']
   })),
   box: productsData.box.map(item => ({
     ...item,
-    description: `${item.name} - сок в удобной коробочной упаковке с трубочкой, идеально подходит для путешествий, пикников и перекусов на ходу. Сохраняет все полезные свойства.`,
-    benefits: ['Удобная упаковка', 'Долгий срок хранения', 'С трубочкой', 'Идеален для путешествий']
+    description: `${item.name} - qulay qutilidagi sharbat, sayohatlar, pikniklar va yo'lda iste'mol qilish uchun juda qulay. Barcha foydali xususiyatlarni saqlaydi.`,
+    benefits: ['Qulay qadoq', 'Uzoq saqlash muddati', 'Naychasi bilan', 'Sayohatlar uchun ideal']
   }))
 }
 
@@ -85,25 +85,24 @@ export default function ProductsPage() {
   }
 
   const handleContactClick = () => {
-    // Здесь можно добавить логику для открытия формы связи или перенаправления
-    window.location.href = 'tel:+1234567890'; // Пример ссылки на звонок
-    // Или открыть модальное окно с формой
+    // Aloqa uchun telefon raqamiga yo'naltirish
+    window.location.href = 'tel:+1234567890';
   }
 
   return (
     <div className='products mt-[80px] pb-32 min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50'>
       <div className="container mx-auto px-4 py-24 md:py-32">
-        {/* Заголовок с анимацией */}
+        {/* Sarlavha animatsiyasi */}
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-center text-4xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-400"
         >
-          НАШИ СОКИ
+          BIZNING SHARBATLARIMIZ
         </motion.h1>
         
-        {/* Селектор категорий с эффектом стекла */}
+        {/* Kategoriyalar tanlovi */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -133,7 +132,7 @@ export default function ProductsPage() {
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-6 md:gap-8">
-          {/* Левое меню с прокруткой - 3D эффект */}
+          {/* Chap menyu (aylanma effekt) */}
           <motion.div 
             className="w-full lg:w-2/5 bg-white rounded-2xl shadow-xl overflow-hidden"
             initial={{ opacity: 0, x: -50 }}
@@ -178,7 +177,7 @@ export default function ProductsPage() {
                   </motion.div>
                 ))}
               </div>
-              {/* Индикатор прокрутки */}
+              {/* Scroll ko'rsatkichi */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200">
                 <motion.div 
                   className="h-full bg-green-500"
@@ -190,7 +189,7 @@ export default function ProductsPage() {
             </div>
           </motion.div>
 
-          {/* Правый контент - детали продукта */}
+          {/* O'ng tomon - mahsulot tafsilotlari */}
           <div className="w-full lg:w-3/5">
             <AnimatePresence mode="wait">
               <motion.div
@@ -202,7 +201,7 @@ export default function ProductsPage() {
                 className="h-full bg-white rounded-2xl shadow-xl overflow-hidden"
               >
                 <div className="flex flex-col md:flex-row h-full">
-                  {/* Изображение продукта с параллакс эффектом */}
+                  {/* Mahsulot rasmi (parallaks effekti) */}
                   <div 
                     className="relative h-64 md:h-auto w-full md:w-1/2 min-h-[300px] bg-gradient-to-br from-green-100 to-white"
                     onMouseEnter={() => setIsHovering(true)}
@@ -225,13 +224,13 @@ export default function ProductsPage() {
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </motion.div>
-                    {/* Бейдж */}
+                    {/* Yorliq */}
                     <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
-                      ХИТ ПРОДАЖ
+                      SOTUVLAR LIDERI
                     </div>
                   </div>
                   
-                  {/* Информация о продукте */}
+                  {/* Mahsulot haqida ma'lumot */}
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col">
                     <div className="flex-grow">
                       <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
@@ -248,7 +247,7 @@ export default function ProductsPage() {
                       </p>
                       
                       <div className="mb-8">
-                        <h3 className="font-semibold text-gray-900 mb-3">Преимущества:</h3>
+                        <h3 className="font-semibold text-gray-900 mb-3">Afzalliklar:</h3>
                         <div className="grid grid-cols-2 gap-2">
                           {selectedItem.benefits.map((benefit, i) => (
                             <motion.div
@@ -266,7 +265,7 @@ export default function ProductsPage() {
                       </div>
                     </div>
                     
-                    {/* Кнопки действий */}
+                    {/* Harakat tugmalari */}
                     <div className="flex gap-4">
                       <motion.button
                         whileHover={{ scale: 1.03 }}
@@ -274,7 +273,7 @@ export default function ProductsPage() {
                         className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-6 rounded-lg font-medium shadow-md hover:shadow-lg transition-all"
                         onClick={handleContactClick}
                       >
-                        Связаться с нами
+                        Biz bilan bog'laning
                       </motion.button>
                       <motion.button
                         whileHover={{ scale: 1.03 }}
