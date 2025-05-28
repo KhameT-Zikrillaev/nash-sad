@@ -230,7 +230,7 @@ export default function Loading() {
 
       {/* Прогресс-бар */}
       <motion.div 
-        className="absolute bottom-1/5 w-64 h-3 bg-gray-200 rounded-full overflow-hidden shadow-inner"
+        className="absolute bottom-1/5 w-64 h-1 bg-gray-200 rounded-full overflow-hidden shadow-inner"
       >
         <motion.div
           className="h-full bg-gradient-to-r from-green-400 to-green-600"
