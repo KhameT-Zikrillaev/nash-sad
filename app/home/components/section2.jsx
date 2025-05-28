@@ -6,6 +6,7 @@ import Image from 'next/image';
 import photo1 from '@/public/images/250format.webp';
 import photo2 from '@/public/images/125format.webp';
 import rightabastrack2 from '@/public/images/right-2-abstrack.webp';
+import leftabstrack2 from '@/public/images/leftabstrack2.webp'
 import onesok from '@/public/images/onesok.webp'
 import onekaronsok from '@/public/images/onekaronsok.webp'
 export default function Section2() {
@@ -16,10 +17,14 @@ export default function Section2() {
   });
 
   // Анимация для абстрактного элемента
-  const xPos = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [15, 0]);
+  const xPos1 = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const rotate1 = useTransform(scrollYProgress, [0, 1], [15, 0]);
 
+  // Анимация для абстрактного элемента
+  const xPos2 = useTransform(scrollYProgress, [0, 0.5], [-50, 0]); // Изменено на -50
+  const opacity2 = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const rotate2 = useTransform(scrollYProgress, [0, 1], [-15, 0]); // Можно сделать вращение в дру
   // Анимация для кубиков
   const cube1Y = useTransform(scrollYProgress, [0, 1], [-100, 0]);
   const cube2Y = useTransform(scrollYProgress, [0, 1], [-50, 0]);
@@ -65,21 +70,40 @@ export default function Section2() {
     <>
       <div className='section-2 mt-2 px-2 sm:mt-[100px] relative' ref={sectionRef}>
         {/* Анимированный абстрактный элемент */}
-        <motion.div 
-          className='absolute max-w-[350px] lg:max-w-[550px] xl:max-w-[650px] 2xl:max-w-[850px] w-full -top-[25%] -right-[235px] sm:-top-[80%] md:-top-[80%] sm:-right-[235px] md:-right-[235px] lg:-top-[100%] lg:-right-[360px] xl:-top-[140%] xl:-right-[440px] 2xl:-right-[560px]'
-          style={{
-            x: xPos,
-            opacity,
-            rotate,
-            transition: 'all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1)'
-          }}
-        >
-          <Image 
-            src={rightabastrack2} 
-            alt="Right Abstract" 
-            className='w-full h-auto'
-          />
-        </motion.div>
+     {/* right abstract */}
+<motion.div 
+  className='absolute max-w-[350px] lg:max-w-[550px] xl:max-w-[650px] 2xl:max-w-[850px] w-full -top-[25%] -right-[235px] sm:-top-[80%] md:-top-[80%] sm:-right-[235px] md:-right-[235px] lg:-top-[100%] lg:-right-[360px] xl:-top-[140%] xl:-right-[440px] 2xl:-right-[560px]'
+  style={{
+    x: xPos1,
+    opacity: opacity1, // исправлено на opacity
+    rotate: rotate1,  // исправлено на rotate
+    transition: 'all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1)'
+  }}
+>
+  <Image 
+    src={rightabastrack2} 
+    alt="Right Abstract" 
+    className='w-full h-auto'
+  />
+</motion.div>
+
+{/* left abstract */}
+<motion.div 
+  className='absolute  max-w-[120px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[300px] w-full -top-[5%]  sm:-top-[40%] 2xl:-top-[60%] left-[5%] sm:left-[10%] 2xl:left-[5%]'
+  style={{
+    x: xPos2,
+    opacity: opacity2, // исправлено на opacity
+    rotate: rotate2,  // исправлено на rotate
+    transition: 'all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1)'
+  }}
+>
+  <Image 
+    src={leftabstrack2} 
+    alt="Left Abstract" 
+    className='w-full h-auto'
+  />
+</motion.div>
+
 
         <div className="container w-full py-12 relative flex justify-center items-center mt-10">
           <motion.div 
