@@ -28,12 +28,12 @@ export default function Section4() {
 
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ контейнер кнопка~~~~~~~~~~~~~~~~~~~~~~~~~ */}
  
- <button className="cursor-pointer custom-swiper-prev bg-white rounded-full absolute left-[22%] sm:left-[28%] md:left-[22%] lg:left-[22%] xl:left-[23%] top-1/2 -translate-y-1/2 z-50" aria-label="Previous">
+ <button className="cursor-pointer custom-swiper-prev bg-white rounded-full absolute left-[22%] sm:left-[28%] md:left-[31%] lg:left-[30%] xl:left-[22%] top-1/2 -translate-y-1/2 z-50" aria-label="Previous">
     <svg className='w-8 h-8 sm:w-12 sm:h-12' fill="none" stroke="#32ba4e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
       <path d="M15 18l-6-6 6-6" />
     </svg>
   </button>
-  <button className="cursor-pointer custom-swiper-next bg-white rounded-full absolute right-[22%] sm:right-[28%] md:right-[22%] lg:right-[22%] xl:right-[23%] top-1/2 -translate-y-1/2 z-50" aria-label="Next">
+  <button className="cursor-pointer custom-swiper-next bg-white rounded-full absolute right-[22%] sm:right-[28%] md:right-[30%] lg:right-[32%] xl:right-[24%] top-1/2 -translate-y-1/2 z-50" aria-label="Next">
     <svg className='w-8 h-8 sm:w-12 sm:h-12' fill="none" stroke="#32ba4e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
       <path d="M9 6l6 6-6 6" />
     </svg>
@@ -51,8 +51,8 @@ export default function Section4() {
   breakpoints={{
     480:  { slidesPerView: 3.0, spaceBetween: 24 },
     640:  { slidesPerView: 3.0, spaceBetween: 36 },
-    768:  { slidesPerView: 2.2, spaceBetween: 24 },
-    900:  { slidesPerView: 2.4, spaceBetween: 32 },
+    768:  { slidesPerView: 3.0, spaceBetween: 24 },
+    900:  { slidesPerView: 3.2, spaceBetween: 72 },
     1200: { slidesPerView: 4.2, spaceBetween: 32 },
     1440: { slidesPerView: 6.0, spaceBetween: 32 },
   }}

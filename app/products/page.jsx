@@ -28,20 +28,20 @@ const categories = [
 // Массивы для товаров
 const productsData = {
   classic: [
-    { id: 1, name: 'Апельсиновый сок', image: Apelsin, price: '12 000 сум', volume: '1 л' },
-    { id: 2, name: 'Грушевый сок', image: Grusha, price: '11 500 сум', volume: '1 л' },
-    { id: 3, name: 'Яблочный сок', image: Yabloko, price: '10 000 сум', volume: '1 л' },
-    { id: 4, name: 'Киви сок', image: Kivi, price: '13 500 сум', volume: '1 л' },
-    { id: 5, name: 'Лимонный сок', image: Limon, price: '12 800 сум', volume: '1 л' },
-    { id: 6, name: 'Вишневый сок', image: Vishniya, price: '14 000 сум', volume: '1 л' },
+    { id: 1, name: 'Апельсиновый сок', image: Apelsin, volume: '1 л' },
+    { id: 2, name: 'Грушевый сок', image: Grusha, volume: '1 л' },
+    { id: 3, name: 'Яблочный сок', image: Yabloko, volume: '1 л' },
+    { id: 4, name: 'Киви сок', image: Kivi, volume: '1 л' },
+    { id: 5, name: 'Лимонный сок', image: Limon, volume: '1 л' },
+    { id: 6, name: 'Вишневый сок', image: Vishniya, volume: '1 л' },
   ],
   box: [
-    { id: 1, name: 'Апельсиновый (коробка)', image: ApelsinKore, price: '25 000 сум', volume: '1 л' },
-    { id: 2, name: 'Грушевый (коробка)', image: GrushaKore, price: '24 000 сум', volume: '1 л' },
-    { id: 3, name: 'Яблочный (коробка)', image: YablokoKore, price: '22 000 сум', volume: '1 л' },
-    { id: 4, name: 'Киви (коробка)', image: KiviKore, price: '27 000 сум', volume: '1 л' },
-    { id: 5, name: 'Лимонный (коробка)', image: LimonKore, price: '26 500 сум', volume: '1 л' },
-    { id: 6, name: 'Вишневый (коробка)', image: VishniyaKore, price: '28 000 сум', volume: '1 л' },
+    { id: 1, name: 'Апельсиновый (коробка)', image: ApelsinKore, volume: '1 л' },
+    { id: 2, name: 'Грушевый (коробка)', image: GrushaKore, volume: '1 л' },
+    { id: 3, name: 'Яблочный (коробка)', image: YablokoKore, volume: '1 л' },
+    { id: 4, name: 'Киви (коробка)', image: KiviKore, volume: '1 л' },
+    { id: 5, name: 'Лимонный (коробка)', image: LimonKore, volume: '1 л' },
+    { id: 6, name: 'Вишневый (коробка)', image: VishniyaKore, volume: '1 л' },
   ]
 }
 
@@ -84,9 +84,14 @@ export default function ProductsPage() {
     setScrollProgress(progress)
   }
 
+  const handleContactClick = () => {
+    // Здесь можно добавить логику для открытия формы связи или перенаправления
+    window.location.href = 'tel:+1234567890'; // Пример ссылки на звонок
+    // Или открыть модальное окно с формой
+  }
 
   return (
-    <div className='products pb-32 min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50'>
+    <div className='products mt-[80px] pb-32 min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50'>
       <div className="container mx-auto px-4 py-24 md:py-32">
         {/* Заголовок с анимацией */}
         <motion.h1 
@@ -167,12 +172,10 @@ export default function ProductsPage() {
                     <div className="mt-3">
                       <h4 className="font-semibold text-gray-800 truncate">{item.name}</h4>
                       <div className="flex justify-between items-center mt-1">
-                        <span className="text-green-600 font-bold">{item.price}</span>
                         <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">{item.volume}</span>
                       </div>
                     </div>
-
-                    </motion.div>
+                  </motion.div>
                 ))}
               </div>
               {/* Индикатор прокрутки */}
@@ -235,7 +238,6 @@ export default function ProductsPage() {
                         {selectedItem.name}
                       </h2>
                       <div className="flex items-center gap-4 mb-6">
-                        <span className="text-2xl font-bold text-green-600">{selectedItem.price}</span>
                         <span className="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full">
                           {selectedItem.volume}
                         </span>
@@ -256,8 +258,7 @@ export default function ProductsPage() {
                               transition={{ delay: i * 0.1 }}
                               className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-lg"
                             >
-
-<div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                               <span className="text-sm text-gray-700">{benefit}</span>
                             </motion.div>
                           ))}
@@ -271,8 +272,9 @@ export default function ProductsPage() {
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                         className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-6 rounded-lg font-medium shadow-md hover:shadow-lg transition-all"
+                        onClick={handleContactClick}
                       >
-                        Добавить в корзину
+                        Связаться с нами
                       </motion.button>
                       <motion.button
                         whileHover={{ scale: 1.03 }}
