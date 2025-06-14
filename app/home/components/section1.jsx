@@ -15,24 +15,10 @@ import { useState, useEffect } from 'react';
 
 export default function Section1() {
   // Настройки жесткой пружины для "дергания"
-  const [pathData, setPathData] = useState("M 100 230 C 350 130, 650 130, 900 230");
-  const [progress, setProgress] = useState(0);
+
   const gradientId = "lineGradient";
     
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setPathData("M 100 230 C 350 100, 650 100, 900 230");
-      } else {
-        setPathData("M 100 230 C 350 130, 650 130, 900 230");
-      }
-    };
-    
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+
   
   useEffect(() => {
     // Анимация прогресса за 4 секунды
@@ -42,7 +28,7 @@ export default function Section1() {
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const newProgress = Math.min(elapsed / duration, 1);
-      setProgress(newProgress);
+   
       
       if (newProgress < 1) {
         requestAnimationFrame(animate);
@@ -226,39 +212,65 @@ export default function Section1() {
           </div>
 
           <motion.div 
-            className='container w-full h-[400px] -bottom-[150px] sm:-bottom-[130px] md:-bottom-[120px] relative z-50'
-            initial={{ opacity: 0}}
-            animate={{ opacity: 1 }}
-            transition={{ 
-              delay: 2,
-              duration: 1
-            }}
-          >
-            {/* SVG с анимированным градиентом */}
-            <svg
-              className="absolute left-0 top-0 w-full h-full rotate-180"
-              viewBox="0 0 1000 400"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#bdc3c7" />
-                  <stop offset={`${progress * 100}%`} stopColor="#FFD700" />
-                  <stop offset={`${progress * 100}%`} stopColor="#bdc3c7" />
-                  <stop offset="100%" stopColor="#FFD700" />
-                </linearGradient>
-              </defs>
-              
-              <path
-                d={pathData}
-                stroke={`url(#${gradientId})`}
-                strokeWidth="6"
-                strokeDasharray="180 40"
-                strokeLinecap="round"
-              />
-            </svg>
-          </motion.div>
+  className='container w-full h-[500px]  -bottom-[150px] sm:-bottom-[130px] md:-bottom-[120px] relative z-50 flex justify-center items-end pb-4'
+  initial={{ opacity: 0}}
+  animate={{ opacity: 1 }}
+  transition={{ 
+    delay: 2,
+    duration: 1
+  }}
+>
+  <div className=' w-full  '>
+
+<div className="flex gap-2  h-50  justify-center ]   px-[130px] sm:px-[160px]   md:px-[150px]  mt-[25%] md:mt-[120px] sm:mt-[100px] md:mt-[80px] lg:mt-[50px] xl:mt-[20px]  2xl:mt-[50px]  w-full  h-[300px] absolute top-0 left-0 h-2 items-center">
+  {/* Линия 1 (заполнена на 100%) */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180">
+      <path
+        d="M 50 -230 C 750 0, 750 50, 900 110"
+        fill="none"
+        stroke="#FF8C00"
+        strokeWidth="32"
+        strokeLinecap="round"
+      />
+    </svg>
+  
+  {/* Линия 2 (заполнена на 0%) */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 280" className="rotate-180  mt-[5%] ">
+<path 
+  d="M -300 -280 C 20 -330, 750 -250, 900 -190" 
+  fill="none" 
+  stroke="#ccc" 
+  strokeWidth="32" 
+  strokeLinecap="round" 
+/>
+    </svg>
+  
+  {/* Линия 3 (заполнена на 0%) */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 280" className="rotate-180 mt-[5%]">
+<path 
+  d="M -190 -100 C 20 -280, 750 -300, 900 -300" 
+  fill="none" 
+  stroke="#ccc" 
+  strokeWidth="32" 
+  strokeLinecap="round" 
+/>
+    </svg>
+  
+  {/* Линия 4 (заполнена на 0%) */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180 ml-2">
+      <path
+         d="M 900 -250 C 110 0, 200 50, -110 130"
+        fill="none"
+        stroke="#ccc"
+        strokeWidth="32"
+        strokeLinecap="round"
+      />
+    </svg>
+  
+</div>
+
+</div>
+</motion.div>
         </div>
       </motion.div>
     </section>

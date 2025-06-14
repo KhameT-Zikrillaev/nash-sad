@@ -1,25 +1,53 @@
 'use client'
-
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import logowhite from '@/public/images/logowhite.png';
 import Image from 'next/image';
 import Link from 'next/link';
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [lang, setLang] = useState('UZ');
   const [langOpen, setLangOpen] = useState(false);
-  const LANGS = ['UZ', 'RU', 'EN'];
+  const { t, i18n } = useTranslation();
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
-  // Анимация для пунктов меню
-  const menuItems = [
-    { text: 'ISHLAB CHIQARISH', path: '/production', delay: 0.4 },
-    { text: 'MAHSULOTLAR', path: '/products', delay: 0.5 },
-    { text: 'YANGILIKLAR', path: '/news', delay: 0.6 },
-    { text: "BOG'LANISH", path: '#contact', delay: 0.7 }
+  // Языки с правильными кодами для i18next
+  const LANGS = [
+    { code: 'uz', name: 'UZ', flag: '🇺🇿' },
+    { code: 'ru', name: 'RU', flag: '🇷🇺' },
+    { code: 'en', name: 'EN', flag: '🇬🇧' }
   ];
 
-  // Варианты анимации
+  // Текущий язык (синхронизирован с i18n)
+  const [currentLang, setCurrentLang] = useState(
+    LANGS.find(l => l.code === i18n.language) || LANGS[0]
+  );
+
+  // Синхронизация при изменении языка
+  useEffect(() => {
+    const handleLanguageChange = (lng) => {
+      const newLang = LANGS.find(l => l.code === lng) || LANGS[0];
+      setCurrentLang(newLang);
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, [i18n]);
+
+  // Пункты меню
+  const menuItems = [
+    { text: t('menu.production'), path: '/production', delay: 0.4 },
+    { text: t('menu.products'), path: '/products', delay: 0.5 },
+    { text: t('menu.news'), path: '/news', delay: 0.6 },
+    { text: t('menu.contact'), path: '/contact', delay: 0.7 }
+  ];
+
+  // Анимации
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -37,11 +65,13 @@ export default function Navbar() {
 
   return (
     <motion.nav 
-   
-      className="bg-[#32ba4e] border-b-[2px] border-blue-200/10 shadow-xl w-full"
-    >
-      <div className="container h-[80px] md:h-auto mx-auto px-0 py-2 md:py-6 flex flex-col items-center">
-        {/* Лого с анимацией */}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className={`relative w-full ${isHomePage ? 'bg-green-600 shadow-xl border-b-[2px] border-blue-200/10' : 'bg-transparent'}  border-blue-200/10`}>
+      
+      <div className="container relative z-10 h-[80px] md:h-auto mx-auto px-0 py-2 md:py-6 flex flex-col items-center">
+        {/* Логотип */}
         <motion.div 
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -49,11 +79,11 @@ export default function Navbar() {
           className="font-bold absolute md:static text-2xl text-white pt-3 mt-0 md:pt-0 md:mt-4 md:mb-2 select-none text-center"
         >
           <Link href="/">
-          <Image className='w-[60px]' src={logowhite} alt="logo" />
+            <Image className='w-[60px]' src={logowhite} alt="logo" />
           </Link>
         </motion.div>
 
-        {/* Меню + LANG SELECT (десктоп) */}
+        {/* Десктопное меню */}
         <motion.div 
           variants={container}
           initial="hidden"
@@ -74,7 +104,7 @@ export default function Navbar() {
             ))}
           </motion.ul>
 
-          {/* Языковой селектор с анимацией */}
+          {/* Языковой переключатель (десктоп) */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -84,19 +114,19 @@ export default function Navbar() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               whileHover={{ scale: 1.05 }}
-              className={
-                `flex items-center gap-1 justify-center bg-[#159143] text-white font-bold rounded-full w-12 h-10 shadow-lg text-base px-2 focus:outline-none transition-all duration-200 border-2 border-transparent hover:border-[#32ba4e]`
-              }
+              className="flex items-center gap-1 justify-center bg-[#159143] text-white font-bold rounded-full w-12 h-10 shadow-lg text-base px-2 focus:outline-none transition-all duration-200 border-2 border-transparent hover:border-[#32ba4e]"
               onClick={() => setLangOpen((v) => !v)}
               tabIndex={0}
-              aria-label="Выбрать язык"
+              aria-label={t('language_selector')}
             >
               <svg className="w-5 h-5 mr-1 text-white/80" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" stroke="#fff" strokeWidth="2" fill="#159143" />
                 <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke="#fff" strokeWidth="1.2" />
               </svg>
-              <span>{lang}</span>
-              <svg className={`w-3 h-3 ml-1 transform transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+              <span>{currentLang.name}</span>
+              <svg className={`w-3 h-3 ml-1 transform transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
             </motion.button>
 
             <AnimatePresence>
@@ -107,22 +137,22 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
                   className="absolute right-0 mt-2 w-24 bg-white rounded-xl shadow-2xl z-30 py-2 ring-1 ring-[#159143]/10"
+                  onMouseLeave={() => setLangOpen(false)}
                 >
                   {LANGS.map((l) => (
                     <motion.li
-                      key={l}
+                      key={l.code}
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.97 }}
                       className={`flex items-center gap-2 px-4 py-2 text-base cursor-pointer transition font-semibold rounded-lg
-                        ${l === lang ? 'bg-[#32ba4e] text-white shadow' : 'text-[#159143] hover:bg-[#eafbee] hover:text-[#159143]'}`}
-                      onMouseDown={() => { setLang(l); setLangOpen(false); }}
+                        ${i18n.language === l.code ? 'bg-[#32ba4e] text-white shadow' : 'text-[#159143] hover:bg-[#eafbee]'}`}
+                      onClick={() => {
+                        i18n.changeLanguage(l.code);
+                        setLangOpen(false);
+                      }}
                     >
-                      <span className="inline-block w-4 h-4 mr-1">
-                        {l === 'UZ' && <span role="img" aria-label="uz">🇺🇿</span>}
-                        {l === 'RU' && <span role="img" aria-label="ru">🇷🇺</span>}
-                        {l === 'EN' && <span role="img" aria-label="en">🇬🇧</span>}
-                      </span>
-                      {l}
+                      <span className="inline-block w-4 h-4 mr-1">{l.flag}</span>
+                      {l.name}
                     </motion.li>
                   ))}
                 </motion.ul>
@@ -131,14 +161,14 @@ export default function Navbar() {
           </motion.div>
         </motion.div>
 
-        {/* Бургер-меню (мобилка) */}
+        {/* Мобильное меню */}
         <div className="w-full flex items-center justify-between md:hidden">
           <div></div>
           <motion.button
             whileTap={{ scale: 0.9 }}
             className={`relative top-[40%] right-2 flex items-center justify-center w-8 h-8 rounded-sm bg-[#159143] shadow-lg focus:outline-none transition-all duration-200 group ${menuOpen ? 'ring-2 ring-[#32ba4e]/70' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+            aria-label={menuOpen ? t('close_menu') : t('open_menu')}
           >
             <span className={`absolute block h-[3px] w-5 rounded-full bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' : 'top-[25%] left-1/2 -translate-x-1/2'}`}></span>
             <span className={`absolute block h-[3px] w-5 rounded-full bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}`}></span>
@@ -146,7 +176,7 @@ export default function Navbar() {
           </motion.button>
         </div>
 
-        {/* Мобильное меню с анимацией */}
+        {/* Мобильное меню (анимация) */}
         <AnimatePresence>
           {menuOpen && (
             <>
@@ -180,7 +210,7 @@ export default function Navbar() {
                   ))}
                 </motion.ul>
 
-                {/* Языковой селектор для мобилки */}
+                {/* Языковой переключатель (мобильная версия) */}
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -189,20 +219,19 @@ export default function Navbar() {
                 >
                   <motion.button
                     whileTap={{ scale: 0.95 }}
-                    className={
-                      `flex items-center gap-1 justify-center bg-[#159143] text-white font-bold rounded-full w-24 h-12 shadow-lg text-base px-2 focus:outline-none transition-all duration-200 border-2 border-transparent hover:border-[#32ba4e] mx-auto`
-                    }
+                    className="flex items-center gap-1 justify-center bg-[#159143] text-white font-bold rounded-full w-24 h-12 shadow-lg text-base px-2 focus:outline-none transition-all duration-200 border-2 border-transparent hover:border-[#32ba4e] mx-auto"
                     onClick={() => setLangOpen((v) => !v)}
-                    onBlur={() => setTimeout(() => setLangOpen(false), 120)}
                     tabIndex={0}
-                    aria-label="Выбрать язык"
+                    aria-label={t('language_selector')}
                   >
                     <svg className="w-5 h-5 mr-1 text-white/80" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <circle cx="12" cy="12" r="10" stroke="#fff" strokeWidth="2" fill="#159143" />
                       <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke="#fff" strokeWidth="1.2" />
                     </svg>
-                    <span>{lang}</span>
-                    <svg className={`w-3 h-3 ml-1 transform transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    <span>{currentLang.name}</span>
+                    <svg className={`w-3 h-3 ml-1 transform transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
                   </motion.button>
                   
                   <AnimatePresence>
@@ -216,19 +245,18 @@ export default function Navbar() {
                       >
                         {LANGS.map((l) => (
                           <motion.li
-                            key={l}
+                            key={l.code}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
                             className={`flex items-center gap-2 px-4 py-2 text-base cursor-pointer transition font-semibold rounded-lg
-                              ${l === lang ? 'bg-[#32ba4e] text-white shadow' : 'text-[#159143] hover:bg-[#eafbee] hover:text-[#159143]'}`}
-                            onMouseDown={() => { setLang(l); setLangOpen(false); }}
+                              ${i18n.language === l.code ? 'bg-[#32ba4e] text-white shadow' : 'text-[#159143] hover:bg-[#eafbee]'}`}
+                            onClick={() => {
+                              i18n.changeLanguage(l.code);
+                              setLangOpen(false);
+                            }}
                           >
-                            <span className="inline-block w-4 h-4 mr-1">
-                              {l === 'UZ' && <span role="img" aria-label="uz">🇺🇿</span>}
-                              {l === 'RU' && <span role="img" aria-label="ru">🇷🇺</span>}
-                              {l === 'EN' && <span role="img" aria-label="en">🇬🇧</span>}
-                            </span>
-                            {l}
+                            <span className="inline-block w-4 h-4 mr-1">{l.flag}</span>
+                            {l.name}
                           </motion.li>
                         ))}
                       </motion.ul>
@@ -240,6 +268,22 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </div>
+   {!isHomePage && (
+     <motion.div 
+       initial={{ y: -100, opacity: 0 }}
+       animate={{ y: 0, opacity: 1 }}
+       transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+       className='absolute z-0 top-0 w-full'>
+       <div className='max-w-[1920px] mx-auto overflow-hidden lg:mt-[-50px] xl:mt-[-140px]'>
+         <svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+           <path
+             fill="#16a34a"
+             d="M0,0 H1440 V200 C1440,200 1080,300 720,300 C360,300 0,200 0,200 Z"
+           />
+         </svg>
+       </div>
+     </motion.div>
+   )}
     </motion.nav>
   );
 }

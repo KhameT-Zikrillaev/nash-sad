@@ -1,0 +1,12 @@
+{
+    "menu": {
+      "production": "PRODUCTION",
+      "products": "PRODUCTS",
+      "news": "NEWS",
+      "contact": "CONTACT"
+    },
+    "language": {
+      "select": "Select Language"
+    }
+  }
+  

@@ -1,0 +1,12 @@
+{
+    "menu": {
+      "production": "ISHLAB CHIQARISH",
+      "products": "MAHSULOTLAR",
+      "news": "YANGILIKLAR",
+      "contact": "BOG'LANISH"
+    },
+    "language": {
+      "select": "Tilni tanlang"
+    }
+  }
+  

@@ -7,11 +7,63 @@ body {
   width: 100%;
   margin: 0 auto;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~shadow */
+.png-shadow {
+  filter: drop-shadow(8px 8px 46px rgb(255, 255, 255));
+}
+/* Swiper Navigation Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #16a34a; /* green-600 */
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #f0fdf4; /* green-50 */
+  transform: scale(1.05);
+}
+
+.swiper-button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+
+.swiper-button-next {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
 .container {
     max-width: 1280px;
     margin: 0 auto;
 }
-
+input{
+ outline: none;
+}
 .juice-animated-bg {
   background: linear-gradient(120deg, #00b050 0%, #32ba4e 50%, #a3e635 100%);
   background-size: 200% 200%;

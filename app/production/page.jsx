@@ -1,127 +1,139 @@
-'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
+
+'use client'
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
-import vrasheniya from '@/public/images/virasheniya.jpg'
-import zbor from '@/public/images/zbor.jpg'
-import obrobotka from '@/public/images/obrobotka.jpg'
-import dostavka from '@/public/images/dostavka.jpg'
-import zavod1 from '@/public/images/24.png'
-import zavod2 from '@/public/images/zavod2.jpg'
-export default function CompactProduction() {
-  const productionSteps = [
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import img1 from '@/public/images/24.png';
+import img2 from '@/public/images/24.png';
+import img3 from '@/public/images/24.png';
+import img4 from '@/public/images/24.png';
+
+export default function Production() {
+  const imageData = [
     {
-      title: "O'simlik yetishtirish",
-      desc: "Bog'larimizda ekologik toza mevalar yetishtirish",
-      img: vrasheniya // O'z rasmingiz bilan almashtiring
+      id: 1,
+      image: img1,
+      alt: 'Ishlab chiqarish jarayoni 1',
     },
     {
-      title: "Hosil yig'ish",
-      desc: "Qo'lda etuklik cho'qqisida yig'ib olish",
-      img: zbor // O'z rasmingiz bilan almashtiring
+      id: 2,
+      image: img2,
+      alt: 'Ishlab chiqarish jarayoni 2',
     },
     {
-      title: "Qayta ishlash",
-      desc: "Zavodimizda zamonaviy qayta ishlash",
-      img: obrobotka // O'z rasmingiz bilan almashtiring
+      id: 3,
+      image: img3,
+      alt: 'Ishlab chiqarish jarayoni 3',
     },
     {
-      title: "Yetkazib berish",
-      desc: "Yang mevalarni tez yetkazib berish",
-      img: dostavka // O'z rasmingiz bilan almashtiring
-    }
+      id: 4,
+      image: img4,
+      alt: 'Ishlab chiqarish jarayoni 4',
+    },
   ];
-
   return (
-    <section id="production" className="pt-16 pb-64 md:mt-[164px] mt-[80px] min-h-screen overflow-hidden  bg-gradient-to-b from-green-50 to-white">
-      <div className="container mx-auto px-4">
-        {/* Sarlavha */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl font-bold text-green-800 mb-4">Ishlab Chiqarishimiz</h1>
-          <p className="text-lg text-green-600 max-w-2xl mx-auto">
-            Bog'dan sizning stolingizgacha - sifat va tabiiylik kafolati
-          </p>
-        </motion.div>
+    <>
+     <div className='ProductionPage max-w-[1920px] w-full mx-auto mt-[25%] relative overflow-hidden  md:mt-[200px] lg:mt-[220px] xl:mt-[200px]'>
+          <div className="container">
+            {/* ~~~~~~~~~~~~~~~~static number content */}
+            <div className="static-content flex   flex-wrap max-w-[700px] w-full mx-auto justify-center md:justify-between items-center">
+              {/* ~~~~~~~~~~~~~~~~~~~~1 */}
+            <div className="flex items-center gap-2">
+  <h3 className="md:text-6xl text-3xl font-bold text-green-600">
+    5.5 <span className="block md:text-xl text-lg font-semibold">gektar</span>
+  </h3>
+  <p className="text-gray-600  leading-[1.2] w-[100px]" >ishlab chiqarish hududi</p>
+            </div>
+            {/* ~~~~~~~~~~~~~~~~~~~~2 */}
+            <div className="flex items-center gap-2">
+  <h3 className="md:text-6xl text-3xl font-bold text-green-600">
+    3 <span className="block md:text-xl text-lg font-semibold">ta</span>
+  </h3>
+  <p className="text-gray-600 leading-[1.2] w-[100px]">yirik texnologik komplekslari</p>
+            </div>
+            {/* ~~~~~~~~~~~~~~~~~~~~3 */}
+            <div className="flex items-center gap-2">
+  <h3 className="md:text-6xl text-3xl font-bold text-green-600">
+    20<span className="block md:text-xl text-lg font-semibold">dan ortiq</span>
+  </h3>
+  <p className="text-gray-600 leading-[1.2] w-[100px]">mahsulot turlari</p>
+            </div>
+            </div>
+            {/* ~~~~~~~~~~~~~~~~movie content */}
+            <div className="movie-content mt-4 w-full max-w-4xl mx-auto aspect-video">
+              <iframe 
+                className="w-full h-full rounded-lg shadow-lg"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen>
+              </iframe>
+            </div>
+            {/* ~~~~~~~~~~~~~~~~article content */}
+            <article className="article-content max-w-5xl leading-[1.5] tracking-wider w-full mx-auto text-lg md:text-xl bg-[#f0fdf4] p-2 md:p-6 rounded-xl mt-8">
+              <p>Sharbat va ichimliklarni quyib qadoqlash sexi kompleksli zamonaviy yuqori texnologik liniyalari bilan jihozlangan bo'lib, meva sharbati va nektarlarinin tayyorlanishidan qadoqlanishigacha jarayon amalga oshiriladi. Liniyalar to'liq avtomatlashtirilgan. Yillik ishlab chiqarish quvvati 5 ming tonna tayyor mahsulotdir.</p>
+              <br/>
+              <p>Korxona SGS (Shveytsariya) tomonidan FSSC 22000 oziq-ovqat mahsulotlari sifati va xavfsizligi tizimiga muvofiq sertifikatlangan. Ichki sifatni nazorat qilish tartiblari quyidagilar bilan ta'minlanadi:</p>
+              <ul className='flex flex-col  gap-1 md:gap-2  mt-2 md:mt-4 list-disc pl-6'>
+                <li>Mahsulotning ishonchliligi, organoleptik ko'rsatkichlar doimiyligining ta'minlanishi;</li>
+                <li>Keyinchalik sifati uchun iste'molchi oldida javobgar bo'la olish uchun, mahsulotning har bir partiyasining to'liq tekshirilishi;</li>
+                <li>Barcha sanitariya-gigiyena me'yorlari va shartlarini bajarilishi;</li>
+                <li>Ishlab chiqarish liniyalarida mahsulotni ishlab chiqarish jarayonining nazorat qilinishi;</li>
+              </ul>
+            </article>
 
-        {/* Ishlab chiqarish bosqichlari (4 ta aylana rasmlar) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {productionSteps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center"
-            >
-              <div className="relative w-48 h-48 mb-4 rounded-full overflow-hidden border-4 border-green-300 shadow-lg">
-                {/* Haqiqiy rasmlar uchun div o'rniga img ishlating */}
-                <Image 
-                  className="w-full h-full bg-cover bg-center"
-                  src={step.img}
-                  alt={step.title}
-                  fill
-                ></Image>
-              </div>
-              <h3 className="text-xl font-bold text-green-800 mb-2">{step.title}</h3>
-              <p className="text-center text-gray-700">{step.desc}</p>
-            </motion.div>
-          ))}
+        
+          </div>
+              {/* ~~~~~~~~~~~~~~~~swiper-1 content */}
+              <div className='swiper-1-content mt-12 w-full mx-auto max-w-[1920px]'>
+  <h2 className='text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center'>Ishlab chiqarish jarayoni</h2>
+  <Swiper
+    modules={[ Pagination, Autoplay]}
+    spaceBetween={30}
+    slidesPerView={1.1} // На мобильных: 1.8 слайда (первый наполовину)
+    centeredSlides={false}
+ 
+    loop={true}
+    pagination={{ clickable: true }}
+    autoplay={{
+      delay: 3000,
+      disableOnInteraction: false,
+    }}
+    breakpoints={{
+      640: {
+        slidesPerView: 1.1, // На планшетах: 2.8 слайда (первый наполовину)
+      },
+      1024: {
+        slidesPerView: 2.2, // На десктопах: 4.2 слайда (первый и последний наполовину)
+      },
+    }}
+    className="mySwiper"
+    style={{
+      paddingLeft: "10%", // Регулирует, насколько первый слайд скрыт
+      paddingRight: "3%", // Регулирует, насколько последний слайд скрыт
+    }}
+  >
+    {imageData.map((item) => (
+      <SwiperSlide key={item.id} className="h-auto">
+        <div className="relative h-64 md:h-80 border rounded-xl overflow-hidden">
+          <Image
+            src={item.image}
+            alt={item.alt}
+            fill
+            className="object-cover"
+            priority={item.id === 1}
+          />
         </div>
-
-        {/* Zavod rasmlari bloki */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-         
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Bizning Zavodimiz</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="rounded-2xl overflow-hidden shadow-xl h-64 bg-gray-200">
-           
-             <Image src={zavod1} alt="Zavod rasmi 1" className="w-full h-full" />
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-xl h-64 bg-gray-200">
-             <Image src={zavod2} alt="Zavod rasmi 2" className="w-full h-full" />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Afzalliklar (aylanalarda) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold text-center text-green-800 mb-8">Bizning Afzalliklarimiz</h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            {[
-              { icon: "🌿", title: "Ekologik toza", desc: "100% tabiiy mahsulotlar" },
-              { icon: "🏆", title: "Sifat", desc: "Barcha bosqichlarda qat'iy nazorat" },
-              { icon: "🚜", title: "O'z ishlab chiqarish", desc: "Bog'dan qadoqlashgacha" },
-              { icon: "💚", title: "Sog'liq", desc: "Siz va tabiat uchun foyda" }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="w-40 h-40 rounded-full bg-white shadow-md border border-green-100 flex flex-col items-center justify-center p-4 text-center"
-              >
-                <span className="text-3xl mb-2">{item.icon}</span>
-                <h3 className="font-bold text-green-800">{item.title}</h3>
-                <p className="text-xs text-gray-600 mt-1">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
+     </div>
+    </>
+  )
 }
