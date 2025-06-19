@@ -119,7 +119,7 @@ export default function Page() {
   };
 
   return (
-    <div className=' max-w-[1920px] w-full mx-auto mt-8 relative overflow-hidden  '>
+    <div className=' max-w-[1920px]  mt-[40px]  sm:mt-[100px] xl:mt-[50px] w-full mx-auto mt-8 relative overflow-hidden'>
        <Image className='absolute max-w-[500px] z-0 bottom-[50%]  md:bottom-[20%]  md:bottom-[30%] left-[-400px] md:left-[-250px]' src={leftabstrack} alt="leftabstrack" />
               <Image className='absolute max-w-[500px] z-0 bottom-[40%] md:bottom-0  right-[-250px]' src={righta1bstrack} alt="righta1bstrack" />
               <Image className='absolute max-w-[500px] z-0 top-[-10%] hidden md:block   opacity-100 right-[-400px] md:right-[-350px]' src={righta2bstrack} alt="righta2bstrack" />

@@ -68,7 +68,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`relative w-full ${isHomePage ? 'bg-green-600 shadow-xl border-b-[2px] border-blue-200/10' : 'bg-transparent'}  border-blue-200/10`}>
+      className={`relative z-50 w-full ${isHomePage ? 'bg-green-600 shadow-xl border-b-[2px] border-blue-200/10' : 'bg-transparent'}  border-blue-200/10`}>
       
       <div className="container relative z-10 h-[80px] md:h-auto mx-auto px-0 py-2  flex flex-col items-center">
         {/* Логотип */}
@@ -166,7 +166,7 @@ export default function Navbar() {
           <div></div>
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className={`relative top-[40%] right-2 flex items-center justify-center w-8 h-8 rounded-sm bg-[#159143] shadow-lg focus:outline-none transition-all duration-200 group ${menuOpen ? 'ring-2 ring-[#32ba4e]/70' : ''}`}
+            className={`relative z-50 top-[40%] right-2 flex items-center justify-center w-8 h-8 rounded-sm bg-[#159143] shadow-lg focus:outline-none transition-all duration-200 group ${menuOpen ? 'ring-2 ring-[#32ba4e]/70' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? t('close_menu') : t('open_menu')}
           >
@@ -184,7 +184,7 @@ export default function Navbar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/40 z-20"
+                className="fixed  inset-0 bg-black/40 z-50"
                 onClick={() => setMenuOpen(false)}
               ></motion.div>
               
@@ -193,7 +193,7 @@ export default function Navbar() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                className="fixed top-0 left-0 h-full w-[80vw] max-w-xs bg-[#32ba4e] z-30 flex flex-col pt-28 pb-10 px-6 font-semibold text-white text-lg shadow-2xl rounded-tr-3xl rounded-br-3xl md:hidden"
+                className="fixed top-0 left-0 h-full w-[80vw] max-w-xs bg-[#32ba4e] z-50 flex flex-col pt-28 pb-10 px-6 font-semibold text-white text-lg shadow-2xl rounded-tr-3xl rounded-br-3xl md:hidden"
               >
                 <motion.ul className="flex flex-col gap-2">
                   {menuItems.map((menuItem, index) => (

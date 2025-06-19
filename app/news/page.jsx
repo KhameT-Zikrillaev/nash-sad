@@ -73,7 +73,7 @@ const NewsPage = () => {
   }
 
   return (
-    <div className="min-h-screen mt-[20px]  relative overflow-hidden  py-4 px-4 sm:px-6 lg:px-12">
+    <div className="min-h-screen mt-[40px]  sm:mt-[100px]  relative overflow-hidden  py-4 px-4 sm:px-6 lg:px-12">
       <Image className='absolute max-w-[500px] z-0 bottom-[20%] opacity-60 lg:opacity-100 md:bottom-0 left-[-400px] md:left-[-350px]' src={leftabstrack} alt="leftabstrack" />
       <Image className='absolute max-w-[500px] z-0 bottom-[20%] md:bottom-[-15%] opacity-60 lg:opacity-100 right-[-350px]' src={righta1bstrack} alt="righta1bstrack" />
       <Image className='absolute max-w-[500px] z-0 top-[-10%] opacity-60 lg:opacity-100 right-[-400px] md:right-[-350px]' src={righta2bstrack} alt="righta2bstrack" />

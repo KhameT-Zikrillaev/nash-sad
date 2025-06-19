@@ -49,14 +49,14 @@ export default function Section1() {
   const [bgLoaded, setBgLoaded] = useState(false);
 
   return (
-    <section className="w-full flex relative top-[100px] sm:top-[0px] justify-center items-end bg-white h-[300px] sm:h-[420px]  xl:h-[500px] border">
+    <section className="w-full flex relative top-[100px] sm:top-[0px] justify-center items-end bg-white h-[300px] sm:h-[420px]  xl:h-[500px] ">
       <motion.div
         initial={{ y: -300, opacity: 0 }}
         animate={bgLoaded ? { y: 0, opacity: 1 } : { y: -300, opacity: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         style={{ position: 'absolute', inset: 0, zIndex: 1 }}
       >
-        <div className={`relative w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[400px]  xl:h-[550px] border overflow-hidden flex justify-center items-end ${styles.sectionClip}`}>
+        <div className={`relative w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[400px]  xl:h-[550px] overflow-hidden flex justify-center items-end ${styles.sectionClip}`}>
           <Image
             src={bg}
             alt="background"
@@ -222,7 +222,7 @@ export default function Section1() {
 >
   <div className=' w-full  '>
 
-<div className="flex gap-2  h-[300px]  justify-center    px-[130px] sm:px-[160px]   md:px-[150px] mt-[120px] md:mt-[120px] sm:mt-[130px] md:mt-[120px] lg:mt-[50px] xl:mt-[20px]  2xl:mt-[50px]  w-full border   absolute top-0 left-0  items-center">
+<div className="flex gap-2  h-[300px]  justify-center    px-[130px] sm:px-[160px]   md:px-[150px] mt-[120px] md:mt-[120px] sm:mt-[130px] md:mt-[120px] lg:mt-[50px] xl:mt-[20px]  2xl:mt-[50px]  w-full  absolute top-0 left-0  items-center">
   {/* Линия 1 (заполнена на 100%) */}
   <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180">
       <path
