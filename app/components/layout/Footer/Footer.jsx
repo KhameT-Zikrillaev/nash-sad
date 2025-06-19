@@ -36,17 +36,7 @@ export default function Footer() {
   }
 
   // Анимация для основной карточки
-  const cardAnimation = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { 
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  }
+
 
   // Анимация для элементов внутри карточки
   const itemAnimation = {
@@ -95,7 +85,7 @@ export default function Footer() {
             whileInView="visible"
             viewport={{ once: false }}  // Изменено на false для повторной анимации
             variants={fruitAnimations}
-            className='absolute -mt-[260px] z-10 sm:-mt-[100px] w-[160px] sm:w-[350px] xl:w-[400px] left-[calc(50%-80px)] sm:left-[-2%] md:left-[-3%] lg:left-[-0%] xl:left-[9%] sm:top-[-105px] md:top-[-45px] xl:top-[15px] z-0'
+            className='absolute  -mt-[260px] sm:-mt-[100px] z-10 md:-mt-[160px] w-[160px] sm:w-[350px] xl:w-[400px] left-[calc(50%-80px)] sm:left-[-2%] md:left-[-3%] lg:left-[-0%] xl:left-[9%] sm:top-[-105px] md:top-[-45px] xl:top-[15px] z-0'
           >
             <Image 
               src={footerfruitphoto} 
@@ -111,22 +101,10 @@ export default function Footer() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, margin: "-100px" }}  // Изменено на false
-          variants={cardAnimation}
-          className="w-[90%] mb-16 sm:mb-0 sm:max-w-[600px] mx-auto sm:w-full px-4 sm:px-6 py-6 sm:py-8 flex flex-col md:flex-row justify-between items-center relative z-10 bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-2xl shadow-green-100/50 border border-green-100 overflow-hidden"
+        
+          className="w-[90%] mb-16 sm:mb-0 sm:max-w-[600px] mx-auto  px-4 sm:px-6 py-6 sm:py-8 flex flex-col md:flex-row justify-between items-center relative z-10 overflow-hidden"
         >
-          {/* Декоративные элементы */}
-          <motion.div 
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.4, type: 'spring' }}
-            className="absolute -top-20 -left-20 w-40 h-40 rounded-full bg-green-400/10 blur-xl"
-          />
-          <motion.div 
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.6, type: 'spring' }}
-            className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-green-600/10 blur-xl"
-          />
+    
           
           {/* Левая часть */}
           <motion.div 
@@ -157,7 +135,7 @@ export default function Footer() {
             </motion.div>
             
             <motion.button 
-              className="mt-2 relative overflow-hidden group border-2 border-green-500 rounded-full px-6 sm:px-8 py-1 sm:py-2 text-green-600 font-bold hover:text-white transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
+              className="mt-2 relative bg-white md:bg-transparent overflow-hidden group border-2 border-green-500 rounded-full px-6 sm:px-8 py-1 sm:py-2 text-green-600 font-bold hover:text-white transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               custom={2}

@@ -7,6 +7,14 @@
     },
     "language": {
       "select": "Select Language"
+    },
+    "news": {
+      "image_alt": "News image",
+      "no_title": "No title",
+      "no_description": "No description",
+      "back_to_news": "Back to news",
+      "loading": "Loading news...",
+      "read_more": "Read more"
     }
   }
   

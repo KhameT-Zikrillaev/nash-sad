@@ -23,7 +23,7 @@ function Section3Video() {
 
   return (
     <motion.div 
-      className="bg-blue-100 rounded-[60px] h-[440px] w-full relative overflow-hidden p-0"
+      className="bg-blue-100 rounded-[60px] md:h-[350px] h-[250px] w-full relative overflow-hidden p-0"
       whileHover={{ scale: 0.99 }}
       transition={{ duration: 0.3 }}
     >
@@ -64,9 +64,9 @@ function Section3Video() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
       >
-        <p className="text-white font-bold leading-tight">Ishlab chiqarish jarayoni haqida videolavha.</p>
+        <p className="text-white font-semibold leading-tight">Ishlab chiqarish jarayoni haqida videolavha.</p>
         <motion.button 
-          className="text-white cursor-pointer font-bold bg-transparent border-none"
+          className="text-white cursor-pointer font-semibold bg-transparent border-none"
           whileHover={{ x: 5 }}
           whileTap={{ scale: 0.9 }}
         >
@@ -97,7 +97,7 @@ export default function Section3() {
   const card3X = useTransform(scrollYProgress, [0, 1], [200, 0]);
 
   return (
-    <div className='section-3 py-16 p-10 sm:px-32 lg:px-2 bg-white relative overflow-hidden' ref={sectionRef}>
+    <div className='section-3 p-4 sm:p-10 sm:px-32 lg:px-2 bg-white relative overflow-hidden' ref={sectionRef}>
       {/* Левый абстрактный элемент */}
       <motion.div 
         className='absolute max-w-[550px] xl:max-w-[650px] 2xl:max-w-[850px] w-full z-0 top-1/2 -translate-y-1/2 -left-[380px] sm:-left-[420px] md:-left-[400px] xl:-left-[440px] 2xl:-left-[650px]'
@@ -124,13 +124,13 @@ export default function Section3() {
         <Image src={rightabastrack1} alt="Right Abstract" className='w-full h-auto' />
       </motion.div>
 
-      <div className="container relative z-10 mx-auto">
+      <div className=" max-w-[1000px]  w-full relative z-10 mx-auto">
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Левая колонка */}
           <div className="flex flex-col gap-6 w-full lg:w-[60%] mx-auto">
             {/* Верхняя карточка */}
             <motion.div 
-              className="bg-orange-200 rounded-[60px] h-[440px] w-full relative overflow-hidden p-0"
+              className="bg-orange-200 rounded-[60px]   md:h-[350px] h-[250px] w-full relative overflow-hidden p-0"
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -157,12 +157,12 @@ export default function Section3() {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <p className="text-white font-bold leading-tight">
+                <p className="text-white font-semibold leading-tight">
                   Yangi mavsum uchun ta'mni kuchaytirdik!<br/>
                   Ikki karra ko'proq chanqoqlikni qondiruvchi ingredientlar...
                 </p>
                 <motion.button 
-                  className="text-white cursor-pointer font-bold bg-transparent border-none"
+                  className="text-white cursor-pointer font-semibold bg-transparent border-none"
                   whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -191,11 +191,11 @@ export default function Section3() {
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             <motion.div 
-              className="bg-green-700 rounded-[60px] h-[83%] flex flex-col justify-between text-white"
+              className="bg-green-700 rounded-[60px]  flex flex-col justify-between text-white"
               whileHover={{ scale: 0.99 }}
             >
               <Image 
-                className="rounded-t-[60px] w-full h-full object-cover" 
+                className="rounded-t-[60px] w-full h-[350px] md:h-full object-cover" 
                 src={section3photo3} 
                 alt="section3photo1" 
               />
@@ -206,12 +206,12 @@ export default function Section3() {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <p className='ml-4 text-white font-bold leading-tight'>
+                <p className='ml-4 text-white font-semibold leading-tight'>
                   Bog'dan yangi uzilgandek! <br/>
                   Nash sad endi yangicha ko'rinishda.
                 </p>
                 <motion.button 
-                  className="text-white cursor-pointer font-bold"
+                  className="text-white cursor-pointer font-semibold"
                   whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.9 }}
                 >

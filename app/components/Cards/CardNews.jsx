@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const CardNews = ({ id, title, description, date, imageUrl }) => {
+  const { t } = useTranslation();
   return (
     <motion.div 
       className="rounded-xl  overflow-hidden flex flex-col h-full"
@@ -14,7 +16,7 @@ const CardNews = ({ id, title, description, date, imageUrl }) => {
           src={imageUrl}
           alt={title}
           fill
-          className="object-cover rounded-xl"
+          className="object-contain rounded-xl"
         />
       </div>
       
@@ -24,7 +26,9 @@ const CardNews = ({ id, title, description, date, imageUrl }) => {
         <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">{title}</h3>
         
         {/* Description */}
-        <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">{description}</p>
+        <p className="text-gray-600 mb-4 line-clamp-2 flex-grow overflow-hidden text-ellipsis">
+          {description}
+        </p>
         
         {/* Footer with button and date */}
         <div className="flex justify-between items-center pt-3 border-t border-gray-100">
@@ -38,7 +42,7 @@ const CardNews = ({ id, title, description, date, imageUrl }) => {
     whileHover={{ x: 5 }}
     whileTap={{ scale: 0.95 }}
   >
-    Подробно
+    {t('news.read_more')}
     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
     </svg>

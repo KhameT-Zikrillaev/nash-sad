@@ -21,25 +21,12 @@ export default function RootLayout({ children }) {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const MIN_LOAD_TIME = 4000; // 4 секунды
-    const startTime = Date.now();
+    // Даем загрузчику 2.7 секунды на выполнение анимации
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 2700);
 
-    const handleLoad = () => {
-      const elapsed = Date.now() - startTime;
-      const remainingTime = MIN_LOAD_TIME - elapsed;
-
-      // Гарантируем минимум 4 секунды
-      const delay = remainingTime > 0 ? remainingTime : 0;
-
-      setTimeout(() => setShowLoader(false), delay);
-    };
-
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-      return () => window.removeEventListener('load', handleLoad);
-    }
+    return () => clearTimeout(timer);
   }, []);
 
   return (

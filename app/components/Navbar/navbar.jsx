@@ -70,7 +70,7 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`relative w-full ${isHomePage ? 'bg-green-600 shadow-xl border-b-[2px] border-blue-200/10' : 'bg-transparent'}  border-blue-200/10`}>
       
-      <div className="container relative z-10 h-[80px] md:h-auto mx-auto px-0 py-2 md:py-6 flex flex-col items-center">
+      <div className="container relative z-10 h-[80px] md:h-auto mx-auto px-0 py-2  flex flex-col items-center">
         {/* Логотип */}
         <motion.div 
           initial={{ scale: 0.5, opacity: 0 }}

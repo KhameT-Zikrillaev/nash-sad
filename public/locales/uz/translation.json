@@ -7,6 +7,14 @@
     },
     "language": {
       "select": "Tilni tanlang"
-    }
+    },
+    "news": {
+    "image_alt": "Yangiilik rasmi",
+    "no_title": "Sarlavha yo'q",
+    "no_description": "Tavsif mavjud emas",
+    "back_to_news": "Yangiiliklarga qaytish",
+    "loading": "Yangiilik yuklanmoqda...",
+    "read_more": "Batafsil"
+  }
   }
   
