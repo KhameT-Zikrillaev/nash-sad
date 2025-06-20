@@ -6,10 +6,13 @@ import footerfruitphoto from '@/public/images/footerfruitphoto.webp'
 import logogreen from '@/public/images/logogreen.png'
 import callphoto from '@/public/images/callphoto.png'
 import Image from 'next/image'
+import { useTranslation } from 'react-i18next';
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
 export default function Footer() {
+  const { t} = useTranslation();
   const pathname = usePathname()
 
   // Анимация для фрукта (теперь сверху вниз)
@@ -127,26 +130,28 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <div className="text-green-700 font-bold text-xs sm:text-sm leading-tight tracking-wider">MUROJAAT UCHUN</div>
+                <div className="text-green-700 font-bold text-xs sm:text-sm leading-tight tracking-wider">{t('footer.contact_for_inquiries')}</div>
                 <div className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-800 font-black text-xl sm:text-2xl">
                   +998 <span className="text-2xl sm:text-3xl">77 000 00 00</span>
                 </div>
               </div>
             </motion.div>
             
-            <motion.button 
-              className="mt-2 relative bg-white md:bg-transparent overflow-hidden group border-2 border-green-500 rounded-full px-6 sm:px-8 py-1 sm:py-2 text-green-600 font-bold hover:text-white transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              custom={2}
-              variants={itemAnimation}
-            >
-              <span className="relative z-10">BOG'LANISH</span>
-              <motion.span 
-                className="absolute inset-0 w-full h-full bg-gradient-to-r from-green-500 to-green-600 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-full group-hover:translate-x-0"
-                initial={{ x: '-100%' }}
-              />
-            </motion.button>
+            <Link className='cursor-pointer' href="/contact">
+              <motion.button 
+                className="mt-2 cursor-pointer relative bg-white md:bg-transparent overflow-hidden group border-2 border-green-500 rounded-full px-6 sm:px-8 py-1 sm:py-2 text-green-600 font-bold hover:text-white transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                custom={2}
+                variants={itemAnimation}
+              >
+                <span className="cursor-pointer relative z-10">{t('footer.contact')}</span>
+                <motion.span 
+                  className="absolute cursor-pointer inset-0 w-full h-full bg-gradient-to-r from-green-500 to-green-600 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-full group-hover:translate-x-0"
+                  initial={{ x: '-100%' }}
+                />
+              </motion.button>
+            </Link>
           </motion.div>
           
           {/* Правая часть */}

@@ -1,6 +1,6 @@
 {
     "menu": {
-      "production": "ISHLAB CHIQARISH",
+      "production": "MAHSULOTLAR",
       "products": "MAHSULOTLAR",
       "news": "YANGILIKLAR",
       "contact": "BOG'LANISH"
@@ -9,12 +9,64 @@
       "select": "Tilni tanlang"
     },
     "news": {
-    "image_alt": "Yangiilik rasmi",
-    "no_title": "Sarlavha yo'q",
-    "no_description": "Tavsif mavjud emas",
-    "back_to_news": "Yangiiliklarga qaytish",
-    "loading": "Yangiilik yuklanmoqda...",
-    "read_more": "Batafsil"
+      "image_alt": "Yangilik rasmi",
+      "no_title": "Sarlavha yo'q",
+      "no_description": "Tavsif yo'q",
+      "back_to_news": "Yangiliklar ro'yxatiga qaytish",
+      "loading": "Yangilik yuklanmoqda...",
+      "read_more": "Batafsil"
+    },
+    "footer": {
+      "contact_for_inquiries": "MUROJAAT UCHUN",
+      "contact": "BOG'LANISH",
+      "privacy_policy": "MAXFIYLIK SIYOSATI"
+    },
+    "contact": {
+      "address_title": "Manzil:",
+      "address": "O'zbekiston Respublikasi, Namangan viloyati,<br/>Namangan tumani, Mirishkor QFY",
+      "phone_title": "Telefon:",
+      "phone": "+998 99 999 99 99",
+      "form_title": "Biz bilan bog'lanish:",
+      "form": {
+        "name": "Ismingiz",
+        "name_placeholder": "Ismingizni kiriting",
+        "phone": "Telefon raqamingiz",
+        "phone_placeholder": "+99899 999 99 99",
+        "email": "Elektron pochta",
+        "email_placeholder": "example@mail.com",
+        "subject": "Mavzu",
+        "subject_placeholder": "Xabar mavzusi",
+        "message": "Xabar",
+        "message_placeholder": "Xabaringizni yozing",
+        "submit": "YUBORISH",
+        "consent": "Yuborish orqali men shaxsiy ma'lumotlarimni qayta ishlashga ",
+        "consent_button": "roziman"
+      },
+      "success": {
+        "title": "Muvaffaqiyatli yuborildi!",
+        "message": "Xabaringiz muvaffaqiyatli yuborildi. Tez orada siz bilan bog'lanamiz."
+      }
+    },
+    "section4":{
+      "title":"Bizni ijtimoiy tarmoqda kuzatib boring",
+      "title2":"@NASH.SAD.UZ"
+    },
+    "production": {
+      "achievements_certificates": "Yutuqlar va sertifikatlar",
+      "area": "gektar",
+      "unit": "ta",
+      "production_area": "ishlab chiqarish hududi",
+      "large_complexes": "yirik texnologik komplekslari",
+      "product_types": "mahsulot turlari",
+      "over": "dan ortiq",
+      "manufacturing_process": "Ishlab chiqarish jarayoni",
+      "content": {
+        "p1": "Sharbat va ichimliklarni quyib qadoqlash sexi kompleksli zamonaviy yuqori texnologik liniyalari bilan jihozlangan bo'lib, meva sharbati va nektarlarinin tayyorlanishidan qadoqlanishigacha jarayon amalga oshiriladi. Liniyalar to'liq avtomatlashtirilgan. Yillik ishlab chiqarish quvvati 5 ming tonna tayyor mahsulotdir.",
+        "p2": "Korxona SGS (Shveytsariya) tomonidan FSSC 22000 oziq-ovqat mahsulotlari sifati va xavfsizligi tizimiga muvofiq sertifikatlangan. Ichki sifatni nazorat qilish tartiblari quyidagilar bilan ta'minlanadi:",
+        "li1": "Mahsulotning ishonchliligi, organoleptik ko'rsatkichlar doimiyligining ta'minlanishi;",
+        "li2": "Keyinchalik sifati uchun iste'molchi oldida javobgar bo'la olish uchun, mahsulotning har bir partiyasining to'liq tekshirilishi;",
+        "li3": "Barcha sanitariya-gigiyena me'yorlari va shartlarini bajarilishi;",
+        "li4": "Ishlab chiqarish liniyalarida mahsulotni ishlab chiqarish jarayonining nazorat qilinishi;"
+      }
+    }
   }
-  }
-  

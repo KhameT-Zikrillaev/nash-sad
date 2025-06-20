@@ -7,7 +7,12 @@ body {
   width: 100%;
   margin: 0 auto;
 }
-
+.swiper-button-next, 
+.swiper-button-prev {
+  box-shadow: none !important;
+  background-color: transparent !important;
+  color: green !important;
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~shadow */
 .png-shadow {
   filter: drop-shadow(8px 8px 46px rgb(255, 255, 255));
@@ -22,6 +27,10 @@ body {
   border-radius: 50%;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   transition: all 0.3s ease;
+}
+.swiper-pagination-bullet-active {
+  background: #10B981 !important; /* green-500 */
+  transform: scale(1) !important;
 }
 
 .swiper-button-next:after,

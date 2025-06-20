@@ -41,10 +41,10 @@ export default function Navbar() {
 
   // Пункты меню
   const menuItems = [
-    { text: t('menu.production'), path: '/production', delay: 0.4 },
-    { text: t('menu.products'), path: '/products', delay: 0.5 },
-    { text: t('menu.news'), path: '/news', delay: 0.6 },
-    { text: t('menu.contact'), path: '/contact', delay: 0.7 }
+    { id: 'production', text: t('menu.production'), path: '/production', delay: 0.4 },
+    { id: 'products', text: t('menu.products'), path: '/products', delay: 0.5 },
+    { id: 'news', text: t('menu.news'), path: '/news', delay: 0.6 },
+    { id: 'contact', text: t('menu.contact'), path: '/contact', delay: 0.7 }
   ];
 
   // Анимации
@@ -93,13 +93,19 @@ export default function Navbar() {
           <motion.ul className="flex gap-12 font-semibold text-white text-base">
             {menuItems.map((menuItem, index) => (
               <motion.li
-                key={menuItem.text}
+                key={menuItem.id}
                 variants={item}
                 transition={{ delay: menuItem.delay }}
-                className="hover:text-blue-200 transition cursor-pointer"
+                className={`relative transition cursor-pointer  rounded-lg ${
+                  pathname === menuItem.path 
+                    ? 'bg-[#0f7a36] text-white shadow-lg  border-white/30' 
+                    : 'text-white/90 hover:bg-white/10'
+                }`}
                 whileHover={{ scale: 1.05 }}
               >
-                <Link href={menuItem.path}>{menuItem.text}</Link>
+                <Link href={menuItem.path} className="block px-2 py-1">
+                  {menuItem.text}
+                </Link>
               </motion.li>
             ))}
           </motion.ul>
@@ -202,10 +208,16 @@ export default function Navbar() {
                       initial={{ x: -50, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.1 + index * 0.1 }}
-                      className="hover:text-blue-200 transition cursor-pointer py-4 pl-10 pr-2 hover:bg-white/10 font-bold text-xl border-b border-white/30"
+                      className={`transition cursor-pointer py-4 pl-10 pr-2 hover:bg-white/10 font-bold text-xl border-b border-white/30 ${
+                        pathname === menuItem.path 
+                          ? 'text-white bg-white/20' 
+                          : 'text-white/90 hover:text-white'
+                      }`}
                       onClick={() => setMenuOpen(false)}
                     >
-                      <Link href={menuItem.path}>{menuItem.text}</Link>
+                      <Link href={menuItem.path} className="block w-full">
+                        {menuItem.text}
+                      </Link>
                     </motion.li>
                   ))}
                 </motion.ul>

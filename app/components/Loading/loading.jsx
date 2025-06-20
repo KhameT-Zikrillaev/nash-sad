@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import logo from '@/public/images/logowhite.png';
 
-export default function Loading() {
+export default function Loading({ onComplete }) {
   const [progress, setProgress] = useState(0);
   const [show, setShow] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
   const animationComplete = useRef(false);
   const startTime = useRef(Date.now());
   const MIN_LOAD_TIME = 2500; // 2.5 секунды
@@ -32,10 +33,13 @@ export default function Loading() {
           animationComplete.current = true;
           setProgress(100);
           
-          // Ждем 200мс перед скрытием
+          // Запускаем анимацию исчезновения
+          setIsExiting(true);
+          
+          // Вызываем колбэк после небольшой задержки, чтобы анимация успела начаться
           setTimeout(() => {
-            setShow(false);
-          }, 200);
+            if (onComplete) onComplete();
+          }, 50);
         }
       };
       
@@ -52,7 +56,18 @@ export default function Loading() {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[#32ba4e] z-50">
+    <motion.div 
+      className="fixed inset-0 flex items-center justify-center bg-[#32ba4e] z-50 overflow-hidden"
+      initial={{ clipPath: 'circle(141% at 50% 45%)' }}
+      exit={{ 
+        clipPath: 'circle(0% at 50% 45%)',
+        transition: { 
+          duration: 0.8,
+          ease: [0.4, 0, 0.2, 1]
+        }
+      }}
+      onAnimationComplete={onComplete}
+    >
       <div className="relative">
         {/* Круглый фон */}
         <motion.div 
@@ -82,7 +97,7 @@ export default function Loading() {
           />
           
           {/* Логотип */}
-          <motion.div className="relative z-10">
+          <div className="relative z-10">
             <Image 
               src={logo} 
               alt="Loading" 
@@ -91,7 +106,7 @@ export default function Loading() {
               className="filter drop-shadow-lg"
               priority
             />
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Процент загрузки */}
@@ -100,6 +115,6 @@ export default function Loading() {
           <div className="text-sm opacity-80 mt-1">Загрузка...</div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

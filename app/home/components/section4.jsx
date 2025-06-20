@@ -7,9 +7,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useTranslation } from 'react-i18next';
 import api from '@/lib/api';
 export default function Section4() {
   const [apiData, setApiData] = useState([]);
+  const { t } = useTranslation();
   // Индекс центра волны
   const fetchLinks = async () => {
     try {
@@ -32,7 +34,7 @@ export default function Section4() {
     
     <div className="section-4 relative z-20 mt-[30px] pt-6 pb-2 bg-[#32ba4e]">
       <h1 className="text-2xl md:text-4xl uppercase font-semibold text-center mb-8 text-white">
-        Bizni ijtimoiy tarmoqda kuzatib boring <span className="text-lime-200 font-bold">@NASH.SAD.UZ</span>
+        {t('section4.title')} <span className="text-lime-200 font-bold">{t('section4.title2')}</span>
       </h1>
       <div className="mx-auto  relative ">
 

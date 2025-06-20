@@ -6,15 +6,68 @@
       "contact": "CONTACT"
     },
     "language": {
-      "select": "Select Language"
+      "select": "Select language"
     },
     "news": {
       "image_alt": "News image",
       "no_title": "No title",
       "no_description": "No description",
-      "back_to_news": "Back to news",
+      "back_to_news": "Back to news list",
       "loading": "Loading news...",
       "read_more": "Read more"
+    },
+    "contact": {
+      "address_title": "Address:",
+      "address": "Republic of Uzbekistan, Namangan region,<br/>Namangan district, Mirishkor QFY",
+      "phone_title": "Phone:",
+      "phone": "+998 99 999 99 99",
+      "form_title": "Contact Us:",
+      "form": {
+        "name": "Your Name",
+        "name_placeholder": "Enter your name",
+        "phone": "Phone Number",
+        "phone_placeholder": "+99899 999 99 99",
+        "email": "Email",
+        "email_placeholder": "example@mail.com",
+        "subject": "Subject",
+        "subject_placeholder": "Message subject",
+        "message": "Message",
+        "message_placeholder": "Your message",
+        "submit": "SEND",
+        "consent": "By submitting, I agree to the processing of my personal data ",
+        "consent_button": "I consent"
+      },
+      "success": {
+        "title": "Successfully Sent!",
+        "message": "Your message has been sent successfully. We will contact you shortly."
+      }
+    },
+    "section4":{
+      "title":"Follow us on social media",
+      "title2":"@NASH.SAD.UZ"
+    },
+    "footer": {
+      "contact_for_inquiries": "FOR INQUIRIES",
+      "contact": "CONTACT US",
+      "privacy_policy": "PRIVACY POLICY"
+    },
+    "production": {
+      "achievements_certificates": "Achievements and Certificates",
+      "area": "hectares",
+      "unit": "pcs",
+      "production_area": "production area",
+      "large_complexes": "large technological complexes",
+      "product_types": "product types",
+      "over": "over",
+      "manufacturing_process": "Manufacturing Process",
+      "content": {
+        "p1": "The juice and beverage bottling shop is equipped with modern high-tech lines that carry out the process from the preparation of fruit juices and nectars to packaging. The lines are fully automated. The annual production capacity is 5,000 tons of finished products.",
+        "p2": "The enterprise is certified according to the FSSC 22000 food safety and quality management system by SGS (Switzerland). Internal quality control procedures ensure:",
+        "li1": "Ensuring the reliability and consistency of organoleptic indicators;",
+        "li2": "Full inspection of each batch of products to ensure consumer satisfaction with the quality in the future;",
+        "li3": "Compliance with all sanitary and hygienic standards and requirements;",
+        "li4": "Control over the production process on the production lines;"
+      }
+   
     }
   }
-  
