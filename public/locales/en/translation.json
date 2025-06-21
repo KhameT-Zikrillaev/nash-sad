@@ -38,8 +38,26 @@
         "consent_button": "I consent"
       },
       "success": {
-        "title": "Successfully Sent!",
-        "message": "Your message has been sent successfully. We will contact you shortly."
+        "title": "Successfully sent!",
+        "message": "Your message has been sent successfully. We will contact you soon."
+      },
+      "terms": {
+        "title": "Terms and Conditions",
+        "close": "Got it",
+        "sections": [
+          {
+            "title": "1. Data Processing Consent",
+            "content": "By submitting the form, you consent to the processing of your personal data in accordance with our privacy policy. We undertake to use your data solely for processing your request."
+          },
+          {
+            "title": "2. Responsibility",
+            "content": "All information you provide must be accurate. The administration is not responsible for any consequences arising from providing incorrect or false information."
+          },
+          {
+            "title": "3. Feedback",
+            "content": "We strive to respond to all inquiries as soon as possible. Response time may vary depending on the workload. If you have urgent questions, please contact us by phone."
+          }
+        ]
       }
     },
     "products": {

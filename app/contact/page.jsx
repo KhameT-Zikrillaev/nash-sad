@@ -7,35 +7,64 @@ import leftabstrack from '@/public/images/left-abstrack.webp'
 import righta1bstrack from '@/public/images/right-1-abstrack.webp'
 import righta2bstrack from '@/public/images/right-2-abstrack.webp'
 import { IoMdClose } from 'react-icons/io';
-
+import api from '@/lib/api';
 export default function ContactPage() {
   const { t } = useTranslation();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const formRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setShowError(false);
+    setErrorMessage('');
     
-    // Get form data
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    
-    // Create a formatted message with all form fields
-    let message = '';
-    for (const [key, value] of Object.entries(data)) {
-      message += `${key}: ${value}\n`;
+    try {
+      // Get form data
+      const formData = new FormData(e.target);
+      const data = {
+        firstName: formData.get('name'), // assuming your input name is 'name' in the form
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        title: formData.get('subject'), // assuming your input name is 'subject' in the form
+        text: formData.get('message')    // assuming your textarea name is 'message' in the form
+      };
+      
+      // Send data to API
+      const response = await api?.post('/contacts', data);
+      
+      if (response?.status >= 200 && response?.status < 300) {
+        setShowSuccess(true);
+        formRef?.current?.reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 5000);
+      } else {
+        throw new Error('Failed to submit the form');
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      const message = err.response?.data?.message || 
+                    err.message || 
+                    t('form.submitError') || 
+                    'Ошибка при отправке. Пожалуйста, попробуйте снова.';
+      
+      setErrorMessage(message);
+      setShowError(true);
+      
+      // Скрыть сообщение об ошибке через 5 секунд
+      setTimeout(() => {
+        setShowError(false);
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
     }
-    
-    // Show alert with form data
-    alert(message);
-    
-    // Show success message
-    setShowSuccess(true);
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
   };
 
   return (
@@ -114,6 +143,7 @@ export default function ContactPage() {
                 <label className='font-semibold text-center md:text-left' htmlFor="message">{t('contact.form.message')}</label>
                 <textarea 
                   className='md:p-3 p-2 bg-gray-100 outline-none rounded-md w-full' 
+                  name="message"
                   placeholder={t('contact.form.message_placeholder')} 
                   required
                 />
@@ -122,7 +152,13 @@ export default function ContactPage() {
            <button type="submit" className='bg-[#19B04A] text-sm md:text-md text-white font-semibold py-2 px-4 rounded-full tracking-wider'>{t('contact.form.submit')}</button>
            <p className="text-md tracking-wide text-center md:text-left px-2 md:px-0">
              {t('contact.form.consent')}
-             <button type="button" className="text-[#00c853] font-semibold">{t('contact.form.consent_button')}</button>
+             <button 
+               type="button" 
+               className="text-[#00c853] font-semibold hover:underline"
+               onClick={() => setShowTerms(true)}
+             >
+               {t('contact.form.consent_button')}
+             </button>
            </p>
            </div>
          </form>
@@ -130,6 +166,7 @@ export default function ContactPage() {
          </div>
      </div>
 
+      {/* Success Modal */}
       {/* Success Modal */}
       {showSuccess && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -148,6 +185,68 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('contact.success.title')}</h3>
               <p className="text-gray-600">{t('contact.success.message')}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Terms and Conditions Modal */}
+      {showTerms && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto relative">
+            <button 
+              onClick={() => setShowTerms(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <IoMdClose size={24} />
+            </button>
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                {t('contact.terms.title')}
+              </h3>
+            </div>
+            <div className="prose max-w-none">
+              {t('contact.terms.sections', { returnObjects: true }).map((section, index) => (
+                <div key={index} className="mb-6 last:mb-0">
+                  <h4 className="text-lg font-medium text-gray-800 mb-2">
+                    {section.title}
+                  </h4>
+                  <p className="text-gray-600">
+                    {section.content}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex justify-end">
+              <button
+                onClick={() => setShowTerms(false)}
+                className="px-4 py-2 bg-[#19B04A] text-white rounded-full hover:bg-[#158a3d] transition-colors"
+              >
+                {t('contact.terms.close')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Error Modal */}
+      {showError && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full relative">
+            <button 
+              onClick={() => setShowError(false)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            >
+              <IoMdClose size={24} />
+            </button>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Ошибка</h3>
+              <p className="text-gray-600">{errorMessage}</p>
             </div>
           </div>
         </div>

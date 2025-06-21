@@ -8,17 +8,27 @@ import bg3 from '@/public/images/bg.webp'
 import bg4 from '@/public/images/24.png'
 import styles from './section1.module.css'
 import { useState, useEffect } from 'react';
-
+import api from '@/lib/api';
 export default function Section1() {
-  // Массив изображений (в будущем можно заменить на данные из API)
-  const images = [
-    { id: 1, src: bg1 },
-    { id: 2, src: bg2 },
-    { id: 3, src: bg3 },
-    { id: 4, src: bg4 }
-  ];
+  // Состояние для хранения загруженных изображений
+const [images, setImages] = useState([]);
 
-  // Состояние для активного слайда и прогресса анимации
+// Загрузка изображений при монтировании компонента
+useEffect(() => {
+  const fetchImages = async () => {
+    try {
+      const response = await api.get('/intros');
+      setImages(response?.data || []);
+    } catch (error) {
+      console.error('Ошибка при загрузке изображений:', error);
+      // Можно добавить уведомление об ошибке
+    }
+  };
+  
+  fetchImages();
+}, []);
+
+// Состояние для активного слайда и прогресса анимации
   const [activeSlide, setActiveSlide] = useState(0);
   const [progress, setProgress] = useState(0);
   
@@ -74,14 +84,14 @@ export default function Section1() {
   }, [bgLoaded]);
 
   return (
-    <section className="w-full flex relative top-[100px] sm:top-[0px] justify-center items-end bg-white h-[300px] sm:h-[420px]  xl:h-[500px] ">
+    <section className="w-full flex relative top-[100px] sm:top-[0px] justify-center items-end bg-white h-[300px] sm:h-[420px]  xl:h-[570px] ">
       <motion.div
         initial={{ opacity: 0 }}
         animate={bgLoaded ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8 }}
         style={{ position: 'absolute', inset: 0, zIndex: 1 }}
       >
-        <div className={`relative w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[400px] xl:h-[550px] overflow-hidden flex justify-center items-end ${styles.sectionClip}`}>
+        <div className={`relative w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[400px] xl:h-[570px] overflow-hidden flex justify-center items-end ${styles.sectionClip}`}>
           <motion.div
             initial={{ 
               clipPath: 'circle(0% at 50% 0)',
@@ -104,22 +114,24 @@ export default function Section1() {
               overflow: 'hidden'
             }}
           >
-            {images.map((img, index) => (
+            {(images || []).map((img, index) => (
               <motion.div
-                key={img.id}
+                key={img?.id || index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: index === activeSlide ? 1 : 0 }}
                 transition={{ duration: 0.5 }}
                 style={{ position: 'absolute', inset: 0 }}
               >
-                <Image
-                  src={img.src}
-                  alt={`Slide ${index + 1}`}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  priority={index < 2}
-                  onLoadingComplete={() => index === 0 && setBgLoaded(true)}
-                />
+                {img?.imageUrl && (
+                  <Image
+                    src={img.imageUrl}
+                    alt={`Slide ${index + 1}`}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority={index < 2}
+                    onLoadingComplete={() => index === 0 && setBgLoaded?.(true)}
+                  />
+                )}
               </motion.div>
             ))}
           </motion.div>

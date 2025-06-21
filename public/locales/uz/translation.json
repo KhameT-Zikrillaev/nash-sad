@@ -1,6 +1,6 @@
 {
     "menu": {
-      "production": "MAHSULOTLAR",
+      "production": "ISHLAB CHIQARISH",
       "products": "MAHSULOTLAR",
       "news": "YANGILIKLAR",
       "contact": "BOG'LANISH"
@@ -45,6 +45,24 @@
       "success": {
         "title": "Muvaffaqiyatli yuborildi!",
         "message": "Xabaringiz muvaffaqiyatli yuborildi. Tez orada siz bilan bog'lanamiz."
+      },
+      "terms": {
+        "title": "Foydalanish shartlari",
+        "close": "Tushundim",
+        "sections": [
+          {
+            "title": "1. Ma'lumotlarni qayta ishlashga rozilik",
+            "content": "Formani to'ldirish orqali siz shaxsiy ma'lumotlaringizni maxfiylik siyosatimizga muvofiq qayta ishlashga rozilik bildirasiz. Biz sizning ma'lumotlaringizni faqat sizning so'rovingizni qayta ishlash uchun ishlatishga va'dalashamiz."
+          },
+          {
+            "title": "2. Mas'uliyat",
+            "content": "Taqdim etgan barcha ma'lumotlar to'g'ri bo'lishi kerak. Ma'muriyat noto'g'ri yoki yolg'on ma'lumot kiritish natijasida yuzaga keladigan oqibatlar uchun javobgar emas."
+          },
+          {
+            "title": "3. Fikr-mulohaza",
+            "content": "Biz barcha so'rovlarga imkon qadar tezroq javob berishga harakat qilamiz. Javob berish vaqti ish yukiga qarab o'zgarishi mumkin. Agar sizda shoshilinch savollar bo'lsa, iltimos, bizga qo'ng'iroq qiling."
+          }
+        ]
       }
     },
     "section4":{
