@@ -24,7 +24,7 @@ export default function CircleCard({ image }) {
         ref={cardRef}
         className="
           relative rounded-full overflow-hidden cursor-pointer
-          w-[200px] h-[200px] md:w-[250px] md:h-[250px] flex items-center justify-center
+          w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] flex items-center justify-center
           transition-all duration-700   
           group
           before:content-[''] before:absolute before:inset-0 before:rounded-full before:border-8 before:border-transparent before:animate-[rainbow-border_2s_linear_infinite]

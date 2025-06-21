@@ -243,7 +243,7 @@ export default function Footer() {
             <svg className="w-3 sm:w-4 h-3 sm:h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.557 1.522 4.82 3.889 6.115l-.78 2.77 3.116-1.65c.88.275 1.823.425 2.775.425 4.97 0 9-3.186 9-7.115C21 6.186 16.97 3 12 3zm0 12c-.825 0-1.63-.125-2.39-.355l-.67-.18-.585.31-.715-.38.18-.67-.18-.67C7.2 11.6 7 10.38 7 9.115 7 6.814 9.239 5 12 5s5 1.814 5 4.115c0 2.3-2.239 4.115-5 4.115z"/>
             </svg>
-            MAXFIYLIK SIYOSATI
+            {t('footer.privacy_policy')}
           </motion.span>
         </motion.div>
       </footer>
