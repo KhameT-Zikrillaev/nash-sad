@@ -145,37 +145,43 @@ export default function ProductSelectionPage() {
       <div className="max-w-[1000px] relative z-10 w-full mx-auto">
         {/* Блок с продуктами */}
         <div className="py-1">
-          <div className="flex justify-center py-2 overflow-hidden items-end px-4">
-            {filteredProducts.slice(0, 9).map((product, index, array) => {
-              const centerIndex = Math.floor(array.length / 2);
-              const distanceFromCenter = Math.abs(index - centerIndex);
-              const maxDistance = Math.floor(array.length / 2);
-              const multiplier = isMobile ? 20 : 40;
-              const marginBottom = (distanceFromCenter / maxDistance) * multiplier;
-              
-              return (
-                <div 
-                  key={product.id} 
-                  onClick={() => handleFruitSelect(product)}
-                  className={`flex flex-col items-center shrink-0 transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer ${
-                    selectedFruit?.id === product.id ? 'ring-4 ring-green-400 rounded-full' : ''
-                  }`}
-                  style={{ marginBottom: `${marginBottom}px` }}
-                >
-                  <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
-                    <Image 
-                      src={product.iconImage} 
-                      alt={getLocalizedField('title', product)}
-                      width={96}
-                      height={96}
-                      className="w-full h-full object-contain"
-                      unoptimized={true}
-                    />
+          {filteredProducts.length > 0 ? (
+            <div className="flex justify-center py-2 overflow-hidden items-end px-4">
+              {filteredProducts.slice(0, 9).map((product, index, array) => {
+                const centerIndex = Math.floor(array.length / 2);
+                const distanceFromCenter = Math.abs(index - centerIndex);
+                const maxDistance = Math.floor(array.length / 2);
+                const multiplier = isMobile ? 20 : 40;
+                const marginBottom = (distanceFromCenter / maxDistance) * multiplier;
+                
+                return (
+                  <div 
+                    key={product.id} 
+                    onClick={() => handleFruitSelect(product)}
+                    className={`flex flex-col items-center shrink-0 transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer ${
+                      selectedFruit?.id === product.id ? 'ring-4 ring-green-400 rounded-full' : ''
+                    }`}
+                    style={{ marginBottom: `${marginBottom}px` }}
+                  >
+                    <div className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20">
+                      <Image 
+                        src={product.iconImage} 
+                        alt={getLocalizedField('title', product)}
+                        width={96}
+                        height={96}
+                        className="w-full h-full object-contain"
+                        unoptimized={true}
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-10 text-gray-500">
+              {t('products.noProductsAvailable')}
+            </div>
+          )}
         </div>
 
         {/* Основной контент */}

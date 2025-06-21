@@ -42,6 +42,11 @@
         "message": "Your message has been sent successfully. We will contact you shortly."
       }
     },
+    "products": {
+      "noProductsAvailable": "No products available",
+      "selectProduct": "Select Product",
+      "selectProductForDescription": "Select Product For Description"
+    },
     "section4":{
       "title":"Follow us on social media",
       "title2":"@NASH.SAD.UZ"
@@ -75,9 +80,5 @@
         "li4": "Control over the production process on the production lines;"
       }
    
-    },
-    "products": {
-      "selectProduct": "Select Product",
-      "selectProductForDescription": "Select Product For Description"
     }
   }

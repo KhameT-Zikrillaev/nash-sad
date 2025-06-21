@@ -65,7 +65,7 @@ export default function NewsDetailsPage({ params }) {
   }
 
   return (
-    <div className="min-h-screen md:mt-[180px] lg:mt-[200px] xl:mt-[164px] mt-[80px] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen mt-[20px]  sm:mt-[50px] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <Link 
           href="/news" 
