@@ -68,7 +68,7 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`relative z-50 w-full ${isHomePage ? 'bg-green-600 shadow-xl border-b-[2px] border-blue-200/10' : 'bg-transparent'}  border-blue-200/10`}>
+      className={`relative z-50 w-full ${isHomePage ? 'bg-[#00c853] shadow-xl border-b-[2px] border-blue-200/10' : 'bg-transparent'}  border-blue-200/10`}>
       
       <div className="container relative z-10 h-[80px] md:h-auto mx-auto px-0 py-2  flex flex-col items-center">
         {/* Логотип */}
@@ -172,7 +172,7 @@ export default function Navbar() {
           <div></div>
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className={`relative z-50 top-[40%] right-2 flex items-center justify-center w-8 h-8 rounded-sm bg-[#159143] shadow-lg focus:outline-none transition-all duration-200 group ${menuOpen ? 'ring-2 ring-[#32ba4e]/70' : ''}`}
+            className={`relative z-50 top-[40%] right-2 flex items-center justify-center w-8 h-8 rounded-sm bg-[#00c853] shadow-lg focus:outline-none transition-all duration-200 group ${menuOpen ? 'ring-2 ring-[#32ba4e]/70' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? t('close_menu') : t('open_menu')}
           >
@@ -204,7 +204,7 @@ export default function Navbar() {
                 <motion.ul className="flex flex-col gap-2">
                   {menuItems.map((menuItem, index) => (
                     <motion.li
-                      key={menuItem.text}
+                      key={menuItem.id}
                       initial={{ x: -50, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.1 + index * 0.1 }}
@@ -289,7 +289,7 @@ export default function Navbar() {
        <div className='max-w-[1920px] mx-auto overflow-hidden lg:mt-[-50px] xl:mt-[-140px]'>
          <svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
            <path
-             fill="#16a34a"
+             fill="#00c853"
              d="M0,0 H1440 V200 C1440,200 1080,300 720,300 C360,300 0,200 0,200 Z"
            />
          </svg>

@@ -51,6 +51,12 @@
       "title":"Bizni ijtimoiy tarmoqda kuzatib boring",
       "title2":"@NASH.SAD.UZ"
     },
+    "notFound": {
+      "title": "Sahifa topilmadi",
+      "description": "Kechirasiz, siz qidirayotgan sahifani topa olmadik.",
+      "button": "Bosh sahifaga qaytish",
+      "or_return": "Yoki oldingi sahifaga qayting"
+    },
     "production": {
       "achievements_certificates": "Yutuqlar va sertifikatlar",
       "area": "gektar",
@@ -68,5 +74,9 @@
         "li3": "Barcha sanitariya-gigiyena me'yorlari va shartlarini bajarilishi;",
         "li4": "Ishlab chiqarish liniyalarida mahsulotni ishlab chiqarish jarayonining nazorat qilinishi;"
       }
+    },
+    "products": {
+      "selectProduct": "Mahsulotni tanlang",
+     "selectProductForDescription": "Tovarni kategoryasini tanlang"
     }
   }

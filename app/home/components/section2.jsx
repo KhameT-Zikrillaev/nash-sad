@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import rightabastrack2 from '@/public/images/right-2-abstrack.webp';
 import leftabstrack2 from '@/public/images/leftabstrack2.webp';
 import api from '@/lib/api';
@@ -10,11 +11,21 @@ import api from '@/lib/api';
 export default function Section2() {
   const sectionRef = useRef(null);
   const [categories, setCategories] = useState([]);
+  const { i18n } = useTranslation();
+  
+  // Получаем текущий язык
+  const currentLang = i18n.language || 'uz';
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
+  
+  // Функция для получения локализованного поля
+  const getLocalizedField = (field, item) => {
+    const fieldName = `${field}${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`;
+    return item[fieldName] || item[`${field}Uz`] || ''; // Возвращаем на узбекском, если перевод не найден
+  };
 
   // Анимации для абстрактных элементов
   const rightX = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
@@ -24,9 +35,15 @@ export default function Section2() {
   const fetchCategories = async () => {
     try {
       const response = await api.get('/category');
+      console.log(response.data);
       if (response.data?.data) {
-        setCategories(response.data.data);
-        console.log('Категории:', response.data.data);
+        // Добавляем локализованные поля в каждую категорию
+        const categoriesWithLocalization = response.data.data.map(category => ({
+          ...category,
+          localizedTitle: getLocalizedField('title', category),
+          localizedDescription: getLocalizedField('description', category)
+        }));
+        setCategories(categoriesWithLocalization);
       }
     } catch (err) {
       console.error('Ошибка при запросе к /category:', err);
@@ -35,7 +52,7 @@ export default function Section2() {
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [currentLang]); // Обновляем при смене языка
   return (
     <div className='section-2 mt-2 px-2 sm:mt-[100px] relative' ref={sectionRef}>
         {/* right abstract */}
@@ -118,8 +135,8 @@ export default function Section2() {
                     />
                   </div>
                   <p className='text-center px-4 text-white static md:absolute md:bottom-4 md:left-0 md:right-0 transition-all duration-300 transform md:-translate-y-10 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:bottom-[-2%] md:group-hover:opacity-100'>
-                    {card.titleUz} <br />
-                    <span className="text-[14px]">  {card.descriptionUz}</span>
+                    {card.localizedTitle || card.titleUz} <br />
+                    <span className="text-[14px]">{card.localizedDescription || card.descriptionUz}</span>
                   </p>
                
                 </div>

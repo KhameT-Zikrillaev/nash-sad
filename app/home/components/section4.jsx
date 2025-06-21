@@ -32,7 +32,7 @@ export default function Section4() {
   return (
     <>
     
-    <div className="section-4 relative z-20 mt-[30px] pt-6 pb-2 bg-[#32ba4e]">
+    <div className="section-4 relative z-20 mt-[30px] pt-6 pb-2 bg-[#00c853]">
       <h1 className="text-2xl md:text-4xl uppercase font-semibold text-center mb-8 text-white">
         {t('section4.title')} <span className="text-lime-200 font-bold">{t('section4.title2')}</span>
       </h1>
@@ -128,7 +128,7 @@ export default function Section4() {
         {/* Белый фон с зелёной волной сверху, как на фото */}
         <div className="absolute z-20 top-0 left-0 w-full  bg-transparent"></div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 500" preserveAspectRatio="none" className="absolute z-20  md:-top-[30px]  lg:-top-[60px] left-0 w-full">
-          <path fill="#32ba4e" d="M0,300 C480,0 960,0 1440,300 L1440,0 L0,0 Z"></path>
+          <path fill="#00c853" d="M0,300 C480,0 960,0 1440,300 L1440,0 L0,0 Z"></path>
         </svg>
       </div>
     </>

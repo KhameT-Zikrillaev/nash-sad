@@ -2,216 +2,131 @@
 
 import { motion } from 'framer-motion';
 import Image from "next/image";
-import bg from '@/public/images/bg.webp'
-import logoabstrack from '@/public/images/logoabstrack.webp'
-import topabstrack from '@/public/images/topabstrack.webp'
-import bottomabstrack from '@/public/images/bottomabstrack.webp'
-import leftabstrack from '@/public/images/leftabstrack.webp'
-import rightabstrack from '@/public/images/rightabstrack.webp'
-import textabstrack from '@/public/images/textabstrack.webp'
-import sokabstrack from '@/public/images/sokabstrack.webp'
+import bg1 from '@/public/images/bg.webp'
+import bg2 from '@/public/images/24.png'
+import bg3 from '@/public/images/bg.webp'
+import bg4 from '@/public/images/24.png'
 import styles from './section1.module.css'
 import { useState, useEffect } from 'react';
 
 export default function Section1() {
-  // Настройки жесткой пружины для "дергания"
+  // Массив изображений (в будущем можно заменить на данные из API)
+  const images = [
+    { id: 1, src: bg1 },
+    { id: 2, src: bg2 },
+    { id: 3, src: bg3 },
+    { id: 4, src: bg4 }
+  ];
 
-  const gradientId = "lineGradient";
-    
-
+  // Состояние для активного слайда и прогресса анимации
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [progress, setProgress] = useState(0);
   
+  // Функция для смены слайда
+  const goToSlide = (index) => {
+    setActiveSlide(index);
+    setProgress(0);
+  };
+
+  // Анимация прогресса и переключение слайдов
   useEffect(() => {
-    // Анимация прогресса за 4 секунды
-    const duration = 4000;
-    const startTime = Date.now();
+    let startTime;
+    let animationFrameId;
     
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const duration = 4000; // 4 секунды на анимацию
+      
       const newProgress = Math.min(elapsed / duration, 1);
-   
+      setProgress(newProgress);
       
       if (newProgress < 1) {
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        // Переключение на следующий слайд по завершении анимации
+        setActiveSlide(prev => (prev + 1) % images.length);
+        setProgress(0);
       }
     };
     
-    animate();
-  }, []);
+    animationFrameId = requestAnimationFrame(animate);
+    
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [activeSlide, images.length]);
 
-  const aggressiveSpring = {
-    type: "spring",
-    stiffness: 300,
-    damping: 15,
-    velocity: 10
-  };
 
-  // Состояние загрузки фоновой картинки
+  // Состояние загрузки фоновой картинки и задержки
   const [bgLoaded, setBgLoaded] = useState(false);
+  const [animationStarted, setAnimationStarted] = useState(false);
+
+  // Запускаем задержку перед анимацией
+  useEffect(() => {
+    if (bgLoaded) {
+      const timer = setTimeout(() => {
+        setAnimationStarted(true);
+      }, 1000); // Уменьшили задержку до 1 секунды
+
+      return () => clearTimeout(timer);
+    }
+  }, [bgLoaded]);
 
   return (
     <section className="w-full flex relative top-[100px] sm:top-[0px] justify-center items-end bg-white h-[300px] sm:h-[420px]  xl:h-[500px] ">
       <motion.div
-        initial={{ y: -300, opacity: 0 }}
-        animate={bgLoaded ? { y: 0, opacity: 1 } : { y: -300, opacity: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        initial={{ opacity: 0 }}
+        animate={bgLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8 }}
         style={{ position: 'absolute', inset: 0, zIndex: 1 }}
       >
-        <div className={`relative w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[400px]  xl:h-[550px] overflow-hidden flex justify-center items-end ${styles.sectionClip}`}>
-          <Image
-            src={bg}
-            alt="background"
-            fill
-            style={{objectFit: 'cover'}}
-            priority
-            onLoadingComplete={() => setBgLoaded(true)}
-          />
+        <div className={`relative w-full -top-[100px] sm:-top-[0px] h-[300px] sm:h-[400px] xl:h-[550px] overflow-hidden flex justify-center items-end ${styles.sectionClip}`}>
+          <motion.div
+            initial={{ 
+              clipPath: 'circle(0% at 50% 0)',
+              transformOrigin: 'center top',
+              transformBox: 'fill-box'
+            }}
+            animate={animationStarted ? { 
+              clipPath: 'circle(150% at 50% 0)'
+            } : { 
+              clipPath: 'circle(0% at 50% 0)'
+            }}
+            transition={{ 
+              duration: 1.2, // Уменьшаем длительность анимации
+              ease: [0.25, 0.46, 0.45, 0.94],
+              type: 'tween'
+            }}
+            style={{ 
+              position: 'absolute', 
+              inset: 0,
+              overflow: 'hidden'
+            }}
+          >
+            {images.map((img, index) => (
+              <motion.div
+                key={img.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: index === activeSlide ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+                style={{ position: 'absolute', inset: 0 }}
+              >
+                <Image
+                  src={img.src}
+                  alt={`Slide ${index + 1}`}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  priority={index < 2}
+                  onLoadingComplete={() => index === 0 && setBgLoaded(true)}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
           <div className={styles.shadowBottomEllipse}></div>
-        
-          {/* Анимированные элементы с дерганием */}
-          <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-            {/* ~~~~~~~~~sok (резко вылетает снизу с тряской) ~~~~~~~~~~~~~ */}
-            <motion.div
-              className='absolute top-[19%] sm:top-[10.5%] left-[10%] md:top-[10%] xl:top-[15%] 2xl:top-[2.5%] z-[2] md:left-[17%] xl:left-[11.5%] max-w-[170px] sm:max-w-[260px] md:max-w-[260px] xl:max-w-[400px] 2xl:max-w-[450px] w-full'
-              initial={{ y: 300, opacity: 0 }}
-              animate={{ 
-                y: 0, 
-                opacity: 1,
-                x: [0, -5, 5, -3, 3, 0]
-              }}
-              transition={{ 
-                ...aggressiveSpring,
-                delay: 0.8,
-                x: { duration: 0.5, repeat: 1 }
-              }}
-            >
-              <Image src={sokabstrack} alt="Sok Abstrack" />
-            </motion.div>
-
-            {/* ~~~~~~~~~text (падает с дрожанием) ~~~~~~~~~~~~~ */}
-            <motion.div
-              className='absolute top-[9%] right-[37%] sm:top-[10%] sm:right-[25%] md:top-[5%] 2xl:top-[8%] z-[2] md:right-[39%] xl:right-[50.5%] 2xl:right-[47.5%] max-w-[150px] sm:max-w-[220px] xl:max-w-[280px] 2xl:max-w-[370px] w-full'
-              initial={{ y: -150, opacity: 0, rotate: -5 }}
-              animate={{ 
-                y: 0, 
-                opacity: 1,
-                rotate: 0,
-                scale: [1, 1.05, 1]
-              }}
-              transition={{ 
-                ...aggressiveSpring,
-                delay: 1.0,
-                scale: { duration: 0.3 }
-              }}
-            >
-              <Image src={textabstrack} alt="Text Abstrack" />
-            </motion.div>
-
-            {/* ~~~~~~~~~top (выскакивает с резким масштабом) ~~~~~~~~~~~~~ */}
-            <motion.div
-              className='absolute top-[33%] right-[16%] sm:right-[23%] sm:top-[33%] md:top-[23%] xl:top-[10.5%] z-[2] md:right-[30%] xl:right-[27.5%] filter drop-shadow-[2px_21px_22px_rgba(0,0,0,0.6)] max-w-[140px] sm:max-w-[200px] xl:max-w-[370px] w-full'
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ 
-                scale: 1, 
-                opacity: 1,
-                rotate: [0, 2, -2, 0]
-              }}
-              transition={{ 
-                type: "spring",
-                stiffness: 500,
-                damping: 15,
-                delay: 1.2,
-                rotate: { duration: 0.4 }
-              }}
-            >
-              <Image src={topabstrack} alt="Top Abstrack" />
-            </motion.div>
-
-            {/* ~~~~~~~~~logo (мощная анимация с ударом и тряской) ~~~~~~~~~~~~~ */}
-            <motion.div
-              className='absolute top-[42.5%] right-[21%] sm:right-[29%] sm:top-[43%] md:top-[30%] xl:top-[20%] md:right-[32%] xl:right-[30%] z-[5] max-w-[90px] sm:max-w-[125px] md:max-w-[120px] xl:max-w-[250px] w-full'
-              initial={{ scale: 0, rotate: -180, opacity: 0 }}
-              animate={{ 
-                scale: [1, 1.2, 1],
-                rotate: [0, 10, -10, 5, -5, 0],
-                opacity: 1
-              }}
-              transition={{ 
-                type: "spring",
-                stiffness: 400,
-                damping: 10,
-                delay: 1.4,
-                rotate: { 
-                  duration: 0.8,
-                  repeat: 0
-                },
-                scale: {
-                  duration: 0.6
-                }
-              }}
-            >
-              <Image src={logoabstrack} alt="Logo Abstrack" />
-            </motion.div>
-
-            {/* ~~~~~~~~~bottom (взрывное появление с поворотом) ~~~~~~~~~~~~~ */}
-            <motion.div
-              className='absolute -bottom-[17%] right-[15%] sm:-bottom-[18%] sm:right-[21%] md:-bottom-[12%] z-[3] md:right-[25.5%] max-w-[150px] sm:max-w-[220px] md:max-w-[250px] xl:max-w-[440px] w-full'
-              initial={{ rotate: 90, opacity: 0, y: 100 }}
-              animate={{ 
-                rotate: 0, 
-                opacity: 1,
-                y: 0,
-                x: [0, 4, -4, 2, -2, 0]
-              }}
-              transition={{ 
-                type: "spring",
-                stiffness: 350,
-                damping: 15,
-                delay: 1.6,
-                x: { duration: 0.6 }
-              }}
-            >
-              <Image src={bottomabstrack} alt="Bottom Abstrack" />
-            </motion.div>
-
-            {/* ~~~~~~~~~left (резкий вылет с отскоком) ~~~~~~~~~~~~~ */}
-            <motion.div
-              className='absolute bottom-[7%] right-[30%] sm:bottom-[13%] sm:right-[43%] md:bottom-[20%] xl:bottom-[18%] z-[1] md:right-[42%] xl:right-[41.5%] max-w-[110px] sm:max-w-[130px] md:max-w-[140px] xl:max-w-[330px] w-full'
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ 
-                x: 0, 
-                opacity: 1,
-                y: [0, -10, 10, -5, 5, 0]
-              }}
-              transition={{ 
-                ...aggressiveSpring,
-                delay: 1.8,
-                y: { duration: 0.7 }
-              }}
-            >
-              <Image src={leftabstrack} alt="Left Abstrack" />
-            </motion.div>
-
-            {/* ~~~~~~~~~right (резкий вылет + вибрация) ~~~~~~~~~~~~~ */}
-            <motion.div
-              className='absolute bottom-[14%] right-[9%] sm:bottom-[15%] sm:right-[13%] md:bottom-[22%] xl:bottom-[25%] z-[1] md:right-[20%] xl:right-[17%] max-w-[130px] sm:max-w-[220px] md:max_w-[250px] xl:max-w-[440px] w-full'
-              initial={{ x: -100, opacity: 0, scale: 0.8 }}
-              animate={{ 
-                x: 0, 
-                opacity: 1,
-                scale: 1,
-                rotate: [0, 3, -3, 0]
-              }}
-              transition={{ 
-                ...aggressiveSpring,
-                delay: 2.0,
-                rotate: { duration: 0.5 }
-              }}
-            >
-              <Image src={rightabstrack} alt="Right Abstrack" />
-            </motion.div>
-          </div>
-
-          <motion.div 
+ 
+{/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ линия 4 для свипер~~~~~~~~~~~~~~~~~~~~~~~~ */}
+       <motion.div 
   className='container w-full h-[500px]  -bottom-[150px] sm:-bottom-[130px]  xl:-bottom-[170px] relative z-50 flex justify-center items-end pb-4'
   initial={{ opacity: 0}}
   animate={{ opacity: 1 }}
@@ -220,57 +135,96 @@ export default function Section1() {
     duration: 1
   }}
 >
-  <div className=' w-full  '>
+
+
+  
+<div className=' w-full  '>
 
 <div className="flex gap-2  h-[300px]  justify-center    px-[130px] sm:px-[160px]   md:px-[150px] mt-[120px] md:mt-[120px] sm:mt-[130px] md:mt-[120px] lg:mt-[50px] xl:mt-[20px]  2xl:mt-[50px]  w-full  absolute top-0 left-0  items-center">
-  {/* Линия 1 (заполнена на 100%) */}
-  <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180">
-      <path
-        d="M 50 -230 C 750 0, 750 50, 900 110"
-        fill="none"
-        stroke="#FF8C00"
-        strokeWidth="32"
-        strokeLinecap="round"
-      />
-    </svg>
+  {/* Линия 1 */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180" onClick={() => goToSlide(0)}>
+    <defs>
+      <linearGradient id="gradient1" x1="100%" y1="0%" x2="0%" y2="0%">
+        <stop offset={activeSlide === 0 ? progress : '100%'} stopColor="#FF8C00" />
+        <stop offset={activeSlide === 0 ? progress : '100%'} stopColor={activeSlide > 0 ? "#ccc" : "#ccc"} />
+      </linearGradient>
+    </defs>
+    <path
+      d="M 50 -230 C 750 0, 750 50, 900 110"
+      fill="none"
+      stroke={
+        activeSlide > 0 ? "#ccc" : 
+        activeSlide === 0 ? "url(#gradient1)" : "#ccc"
+      }
+      strokeWidth="32"
+      strokeLinecap="round"
+    />
+  </svg>
   
-  {/* Линия 2 (заполнена на 0%) */}
-  <svg width="24%" height="auto" viewBox="0 0 1000 280" className="rotate-180  mt-[5%] ">
-<path 
-  d="M -300 -280 C 20 -330, 750 -250, 900 -190" 
-  fill="none" 
-  stroke="#ccc" 
-  strokeWidth="32" 
-  strokeLinecap="round" 
-/>
-    </svg>
+  {/* Линия 2 */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 280" className="rotate-180 mt-[5%]" onClick={() => goToSlide(1)}>
+    <defs>
+      <linearGradient id="gradient2" x1="100%" y1="0%" x2="0%" y2="0%">
+        <stop offset={activeSlide === 1 ? progress : '100%'} stopColor="#FF8C00" />
+        <stop offset={activeSlide === 1 ? progress : '100%'} stopColor={activeSlide > 1 ? "#ccc" : "#ccc"} />
+      </linearGradient>
+    </defs>
+    <path 
+      d="M -300 -280 C 20 -330, 750 -250, 900 -190" 
+      fill="none" 
+      stroke={
+        activeSlide > 1 ? "#ccc" : 
+        activeSlide === 1 ? "url(#gradient2)" : "#ccc"
+      }
+      strokeWidth="32" 
+      strokeLinecap="round" 
+    />
+  </svg>
   
-  {/* Линия 3 (заполнена на 0%) */}
-  <svg width="24%" height="auto" viewBox="0 0 1000 280" className="rotate-180 mt-[5%]">
-<path 
-  d="M -190 -100 C 20 -280, 750 -300, 900 -300" 
-  fill="none" 
-  stroke="#ccc" 
-  strokeWidth="32" 
-  strokeLinecap="round" 
-/>
-    </svg>
+  {/* Линия 3 */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 280" className="rotate-180 mt-[5%]" onClick={() => goToSlide(2)}>
+    <defs>
+      <linearGradient id="gradient3" x1="100%" y1="0%" x2="0%" y2="0%">
+        <stop offset={activeSlide === 2 ? progress : '100%'} stopColor="#FF8C00" />
+        <stop offset={activeSlide === 2 ? progress : '100%'} stopColor={activeSlide > 2 ? "#ccc" : "#ccc"} />
+      </linearGradient>
+    </defs>
+    <path 
+      d="M -190 -100 C 20 -280, 750 -300, 900 -300" 
+      fill="none" 
+      stroke={
+        activeSlide > 2 ? "#ccc" : 
+        activeSlide === 2 ? "url(#gradient3)" : "#ccc"
+      }
+      strokeWidth="32" 
+      strokeLinecap="round" 
+    />
+  </svg>
   
-  {/* Линия 4 (заполнена на 0%) */}
-  <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180 ml-2">
-      <path
-         d="M 900 -250 C 110 0, 200 50, -110 130"
-        fill="none"
-        stroke="#ccc"
-        strokeWidth="32"
-        strokeLinecap="round"
-      />
-    </svg>
+  {/* Линия 4 */}
+  <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180 ml-2" onClick={() => goToSlide(3)}>
+    <defs>
+      <linearGradient id="gradient4" x1="100%" y1="0%" x2="0%" y2="0%">
+        <stop offset={activeSlide === 3 ? progress : '100%'} stopColor="#FF8C00" />
+        <stop offset={activeSlide === 3 ? progress : '100%'} stopColor="#ccc" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M 900 -250 C 110 0, 200 50, -110 130"
+      fill="none"
+      stroke={
+        activeSlide === 3 ? "url(#gradient4)" : "#ccc"
+      }
+      strokeWidth="32"
+      strokeLinecap="round"
+    />
+  </svg>
   
 </div>
 
 </div>
-</motion.div>
+       </motion.div>
+
         </div>
       </motion.div>
     </section>

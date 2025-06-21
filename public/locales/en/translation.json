@@ -51,6 +51,12 @@
       "contact": "CONTACT US",
       "privacy_policy": "PRIVACY POLICY"
     },
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "Sorry, we couldn't find the page you're looking for.",
+      "button": "Go to Homepage",
+      "or_return": "Or go back to the previous page"
+    },
     "production": {
       "achievements_certificates": "Achievements and Certificates",
       "area": "hectares",
@@ -69,5 +75,9 @@
         "li4": "Control over the production process on the production lines;"
       }
    
+    },
+    "products": {
+      "selectProduct": "Select Product",
+      "selectProductForDescription": "Select Product For Description"
     }
   }

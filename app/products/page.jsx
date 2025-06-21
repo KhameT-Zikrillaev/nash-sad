@@ -64,7 +64,7 @@ export default function ProductSelectionPage() {
         if (productsResponse?.data?.data?.items) {
           const productsData = productsResponse.data.data.items;
           setAllProducts(productsData);
-          
+           console.log(productsData);
           if (productsData.length > 0) {
             setSelectedFruit(mapProductToFruit(productsData[0]));
           }
@@ -127,7 +127,7 @@ export default function ProductSelectionPage() {
     <div className='max-w-[1920px] mt-[40px] sm:mt-[100px] xl:mt-[50px] w-full mx-auto relative overflow-hidden'>
       {/* Фоновые изображения */}
       <Image 
-        className='absolute max-w-[500px] z-0 bottom-[50%] md:bottom-[30%] left-[-400px] md:left-[-250px]' 
+        className='absolute max-w-[500px] z-0 bottom-[20%] md:bottom-[30%] left-[-400px] md:left-[-250px]' 
         src={leftabstrack} 
         alt="Абстрактный фон слева" 
       />
@@ -189,20 +189,20 @@ export default function ProductSelectionPage() {
                   initial={{ y: -100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="w-[250px] md:w-[350px] md:absolute left-0 md:bottom-[-200px] bottom-0 block"
+                  className=" w-[250px] h-[250px] md:w-[350px] md:h-[350px] md:absolute left-0 md:bottom-[-200px] bottom-0 block"
                 >
                   <Image
                     src={selectedFruit.imagecontent}
                     alt={selectedFruit.name} 
                     width={350}
-                    height={350}
+                    height={250}
                     unoptimized={true}
-                    className="w-full h-auto"
+                    className="w-full h-full object-contain"
                   />
                 </motion.div>
               )}
               <h2 className="md:text-3xl text-xl font-bold text-green-700 mt-1 md:mt-4">
-                {selectedFruit?.name || t('selectProduct')}
+                {selectedFruit?.name || t('products.selectProduct')}
               </h2>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function ProductSelectionPage() {
         </div>
 
         {/* Детальная информация о продукте */}
-        <div className="content-flagment px-1 mt-[10px] md:mt-[50px] flex justify-end bg-[#2DB851] mb-8 h-64 mx-auto rounded-3xl shadow-md">
+        <div className="content-flagment px-1 mt-[10px] md:mt-[50px] flex justify-end bg-[#00c853] mb-8 h-64 mx-auto rounded-3xl shadow-md">
           <div className="flex w-full md:w-[70%] md:gap-4 items-center">
             {selectedFruit?.imagedetalies && (
               <motion.div
@@ -249,7 +249,7 @@ export default function ProductSelectionPage() {
                 <Image
                   src={selectedFruit.imagedetalies}
                   alt={selectedFruit.name}
-                  className="w-full png-shadow h-full object-cover"
+                  className="w-full png-shadow h-full object-contain"
                   width={500}
                   height={300}
                   unoptimized={true}
@@ -257,7 +257,7 @@ export default function ProductSelectionPage() {
               </motion.div>
             )}
             <p className="w-[50%] text-white md:text-xl text-sm">
-              {selectedFruit?.description || t('selectProductForDescription')}
+              {selectedFruit?.description || t('products.selectProductForDescription')}
             </p>
           </div>
         </div>

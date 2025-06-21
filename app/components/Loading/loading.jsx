@@ -57,7 +57,7 @@ export default function Loading({ onComplete }) {
 
   return (
     <motion.div 
-      className="fixed inset-0 flex items-center justify-center bg-[#32ba4e] z-50 overflow-hidden"
+      className="fixed inset-0 flex items-center justify-center bg-[#00c853] z-50 overflow-hidden"
       initial={{ clipPath: 'circle(141% at 50% 45%)' }}
       exit={{ 
         clipPath: 'circle(0% at 50% 45%)',
