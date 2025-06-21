@@ -123,7 +123,7 @@ export default function Section1() {
               </motion.div>
             ))}
           </motion.div>
-          <div className={styles.shadowBottomEllipse}></div>
+          {/* <div className={styles.shadowBottomEllipse}></div> */}
  
 {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ линия 4 для свипер~~~~~~~~~~~~~~~~~~~~~~~~ */}
        <motion.div 

@@ -10,10 +10,6 @@ import { motion, useInView } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import img1 from '@/public/images/24.png';
-import img2 from '@/public/images/24.png';
-import img3 from '@/public/images/24.png';
-import img4 from '@/public/images/24.png';
  import api from '@/lib/api';
 const AnimatedCounter = ({ value, duration = 2, decimalPlaces = 0 }) => {
   const [count, setCount] = useState(0);
@@ -82,81 +78,29 @@ export default function Production() {
     };
     fetchDataProduction();
   }, [currentLang]); // Добавляем currentLang в зависимости
-  const imageData = [
-    {
-      id: 1,
-      image: img1,
-      alt: 'Ishlab chiqarish jarayoni 1',
-    },
-    {
-      id: 2,
-      image: img2,
-      alt: 'Ishlab chiqarish jarayoni 2',
-    },
-    {
-      id: 3,
-      image: img3,
-      alt: 'Ishlab chiqarish jarayoni 3',
-    },
-    {
-      id: 4,
-      image: img4,
-      alt: 'Ishlab chiqarish jarayoni 4',
-    }
-  ];
-  
-  const imageSwiperData = [
-    {
-      id: 1,
-      image: img1,
-      alt: 'Ishlab chiqarish jarayoni 1',
-      title: 'Ishlab chiqarish jarayoni 1', 
-      description: 'Ishlab chiqarish jarayoni 1',
-    },
-    {
-      id: 2,
-      image: img2,
-      alt: 'Ishlab chiqarish jarayoni 1',
-      title: 'Ishlab chiqarish jarayoni 2',
-      description: 'Ishlab chiqarish jarayoni 2',
-    },
-    {
-      id: 3,
-      image: img3,
-      alt: 'Ishlab chiqarish jarayoni 3',
-      title: 'Ishlab chiqarish jarayoni 3', 
-      description: 'Ishlab chiqarish jarayoni 3',
-    },
-    {
-      id: 4,
-      image: img4,
-      alt: 'Ishlab chiqarish jarayoni 4',
-      title: 'Ishlab chiqarish jarayoni 4',
-      description: 'Ishlab chiqarish jarayoni 4',
-    }
-  ];
+
   
   return (
     <div className='ProductionPage max-w-[1920px] w-full mx-auto mt-[15%] relative overflow-hidden md:mt-[100px] lg:mt-[120px] xl:mt-[100px]'>
       <div className="container">
         {/* ~~~~~~~~~~~~~~~~static number content */}
-        <div className="static-content flex flex-wrap max-w-[700px] w-full mx-auto justify-center md:justify-between items-center">
+        <div className="static-content flex gap-10 md:gap-0 flex-wrap max-w-[700px] w-full mx-auto justify-center md:justify-between items-center">
           {/* ~~~~~~~~~~~~~~~~~~~~1 */}
           <motion.div 
-            className="flex items-center gap-2"
+            className="flex items-center md:gap-2 gap-1"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="md:text-6xl text-3xl font-bold text-green-600">
+            <h3 className="md:text-6xl text-2xl font-bold text-green-600">
               <AnimatedCounter value={5.5} decimalPlaces={1} /> <span className="block md:text-xl text-lg font-semibold">{t('production.area')}</span>
             </h3>
             <p className="text-gray-600 leading-[1.2] w-[100px]">{t('production.production_area')}</p>
           </motion.div>
           {/* ~~~~~~~~~~~~~~~~~~~~2 */}
           <motion.div 
-            className="flex items-center gap-2"
+            className="flex items-center md:gap-2 gap-1"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -169,7 +113,7 @@ export default function Production() {
           </motion.div>
           {/* ~~~~~~~~~~~~~~~~~~~~3 */}
           <motion.div 
-            className="flex items-center gap-2"
+            className="flex items-center md:gap-2 gap-1"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
