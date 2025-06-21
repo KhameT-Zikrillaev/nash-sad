@@ -112,7 +112,6 @@ export default function Loading({ onComplete }) {
         {/* Процент загрузки */}
         <motion.div className="mt-6 text-white text-center">
           <div className="text-2xl font-medium">{progress}%</div>
-          <div className="text-sm opacity-80 mt-1">Загрузка...</div>
         </motion.div>
       </div>
     </motion.div>
