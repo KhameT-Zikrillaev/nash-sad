@@ -65,6 +65,10 @@
       "selectProduct": "Выберите продукт",
       "selectProductForDescription": "Выберите продукт для описания"
     },
+    "section3":{
+      "More":"Подробнее",
+      "videoTitle": "Видео о процессе производства"
+    },
     "section4":{
       "title":"Нас следите в соцсетях",
       "title2":"@NASH.SAD.UZ"

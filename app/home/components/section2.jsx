@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
 import rightabastrack2 from '@/public/images/right-2-abstrack.webp';
 import leftabstrack2 from '@/public/images/leftabstrack2.webp';
 import api from '@/lib/api';
@@ -12,9 +13,15 @@ export default function Section2() {
   const sectionRef = useRef(null);
   const [categories, setCategories] = useState([]);
   const { i18n } = useTranslation();
+  const router = useRouter();
   
   // Получаем текущий язык
   const currentLang = i18n.language || 'uz';
+
+  // Handle category click
+  const handleCategoryClick = (categoryId) => {
+    router.push(`/products?category=${categoryId}`);
+  };
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -54,10 +61,10 @@ export default function Section2() {
     fetchCategories();
   }, [currentLang]); // Обновляем при смене языка
   return (
-    <div className='section-2 mt-2 px-2 sm:mt-[100px] relative' ref={sectionRef}>
+    <div className='section-2 mt-2  px-2 sm:mt-[100px] relative' ref={sectionRef}>
         {/* right abstract */}
         <motion.div 
-          className='absolute max-w-[350px] lg:max-w-[550px] xl:max-w-[650px] 2xl:max-w-[850px] w-full -top-[15%] -right-[235px] sm:-top-[80%] md:-top-[80%] sm:-right-[235px] md:-right-[235px] lg:-top-[100%] lg:-right-[360px] xl:-top-[100%] xl:-right-[440px] 2xl:-right-[560px] z-0'
+          className='absolute max-w-[350px] lg:max-w-[550px] xl:max-w-[650px] 2xl:max-w-[850px] w-full -top-[25%] -right-[235px] sm:-top-[80%] md:-top-[80%] sm:-right-[235px] md:-right-[235px] lg:-top-[100%] lg:-right-[360px] xl:-top-[100%] xl:-right-[440px] 2xl:-right-[560px] z-0'
           style={{
             x: rightX,
             opacity,
@@ -108,12 +115,12 @@ export default function Section2() {
           />
         </motion.div>
 
-        <div className="container w-full py-12 relative flex justify-center items-center mt-10">
-          <div className="w-full max-w-[1000px] mt-[100px] sm:mt-[30px] juice-animated-bg rounded-[48px] py-8 px-4 grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-6">
+        <div className="container w-full  md:py-12 py-4 relative flex justify-center items-center mt-10">
+          <div className="w-full max-w-[1000px] mt-[60px] sm:mt-[30px] juice-animated-bg rounded-[48px] py-1 md:py-8 px-4 grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-6">
             {categories.map((card, index) => (
               <motion.div 
                 key={card.id}
-                className="rounded-2xl -mt-[30px] flex sm:-mt-[120px] max-w-[300px] w-full xl:h-[300px] flex-col items-center justify-center group"
+                className="rounded-2xl -mt-[30px] flex sm:-mt-[120px] max-w-[300px] w-full xl:h-[300px] flex-col items-center justify-center group cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -123,6 +130,7 @@ export default function Section2() {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                onClick={() => handleCategoryClick(card.id)}
               >
                 <div className="max-w-[300px] flex flex-col justify-center items-center w-full xl:h-[300px]   relative p-4">
                   <div className="group-hover:-translate-y-2 transition-transform duration-300">

@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +22,7 @@ export default function ProductSelectionPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [apiData, setApiData] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedFruit, setSelectedFruit] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,7 +57,16 @@ export default function ProductSelectionPage() {
           });
           setApiData(sortedCategories);
           
-          if (sortedCategories.length > 0) {
+          // Получаем категорию из URL или используем первую доступную
+          const categoryFromUrl = searchParams.get('category');
+          if (categoryFromUrl) {
+            const categoryExists = sortedCategories.some(cat => cat.id === categoryFromUrl);
+            if (categoryExists) {
+              setSelectedCategory(categoryFromUrl);
+            } else if (sortedCategories.length > 0) {
+              setSelectedCategory(sortedCategories[0].id);
+            }
+          } else if (sortedCategories.length > 0) {
             setSelectedCategory(sortedCategories[0].id);
           }
         }
@@ -142,7 +153,7 @@ export default function ProductSelectionPage() {
         alt="Абстрактный фон справа 2" 
       />
 
-      <div className="max-w-[1000px] relative z-10 w-full mx-auto">
+      <div className="max-w-[1000px] px-2  xl:px-0 relative z-10 w-full mx-auto">
         {/* Блок с продуктами */}
         <div className="py-1">
           {filteredProducts.length > 0 ? (
@@ -242,7 +253,7 @@ export default function ProductSelectionPage() {
         </div>
 
         {/* Детальная информация о продукте */}
-        <div className="content-flagment px-1 mt-[10px] md:mt-[50px] flex justify-end bg-[#00c853] mb-8 h-64 mx-auto rounded-3xl shadow-md">
+        <div className="content-flagment px-1 mt-[10px] md:mt-[50px] flex justify-end bg-[#00c853] mb-8 h-64 mx-auto rounded-3xl  shadow-md">
           <div className="flex w-full md:w-[70%] md:gap-4 items-center">
             {selectedFruit?.imagedetalies && (
               <motion.div

@@ -1,12 +1,36 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
 import CardNews from '@/app/components/Cards/CardNews';
 import Image from 'next/image';
 import leftabstrack from '@/public/images/left-abstrack.webp';
 import righta1bstrack from '@/public/images/right-1-abstrack.webp';
 import righta2bstrack from '@/public/images/right-2-abstrack.webp';
 import api from '@/lib/api';
+
+// Конфигурация анимации для карточек
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
 const NewsPage = () => {
   const { t, i18n } = useTranslation();
   const [newsData, setNewsData] = useState([]);
@@ -80,18 +104,33 @@ const NewsPage = () => {
       <div className="container relative z-10">
        
         
-        <div className="grid grid-cols-1  md:grid-cols-2 gap-6">
-          {newsData.map((newsItem) => (
-            <CardNews
-              key={newsItem.id}
-              id={newsItem.id}
-              title={newsItem.title}
-              description={newsItem.description}
-              date={newsItem.date}
-              imageUrl={newsItem.imageUrl}
-            />
-          ))}
-        </div>
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <AnimatePresence>
+            {newsData.map((newsItem, index) => (
+              <motion.div
+                key={newsItem.id}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                custom={index}
+              >
+                <CardNews
+                  id={newsItem.id}
+                  title={newsItem.title}
+                  description={newsItem.description}
+                  date={newsItem.date}
+                  imageUrl={newsItem.imageUrl}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </div>
   );
