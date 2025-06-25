@@ -80,7 +80,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer id='contact' className='footer relative w-full -mt-[160px]'>
+      <footer id='contact' className='footer relative w-full -mt-[300px]'>
         {/* Анимированный фрукт с новой анимацией сверху вниз */}
         {pathname === '/' && (
           <motion.div
@@ -88,7 +88,7 @@ export default function Footer() {
             whileInView="visible"
             viewport={{ once: false }}  // Изменено на false для повторной анимации
             variants={fruitAnimations}
-            className='absolute  -mt-[260px] sm:-mt-[100px] z-10 md:-mt-[160px] w-[160px] sm:w-[350px] xl:w-[400px] left-[calc(50%-80px)] sm:left-[-2%] md:left-[-3%] lg:left-[-0%] xl:left-[9%] sm:top-[-105px] md:top-[-45px] xl:top-[15px] z-0'
+            className='absolute  -mt-[120px] sm:-mt-[100px] z-10 md:-mt-[160px] w-[160px] sm:w-[250px]  left-[calc(50%-80px)] sm:left-[-2%] md:left-[4%] lg:left-[5%] xl:left-[9%] sm:top-[55px] md:top-[125px] xl:top-[125px] z-0'
           >
             <Image 
               src={footerfruitphoto} 
@@ -105,7 +105,7 @@ export default function Footer() {
           whileInView="visible"
           viewport={{ once: false, margin: "-100px" }}  // Изменено на false
         
-          className="w-[90%] mb-16 sm:mb-0 sm:max-w-[600px] mx-auto  px-4 sm:px-6 py-6 sm:py-8 flex flex-col md:flex-row justify-between items-center relative z-10 overflow-hidden"
+          className="w-[90%] relative z-50 mb-16 sm:mb-0 sm:max-w-[600px] mx-auto  px-4 sm:px-6 py-6 sm:py-8 flex flex-col md:flex-row justify-between items-center relative z-10 overflow-hidden"
         >
     
           
