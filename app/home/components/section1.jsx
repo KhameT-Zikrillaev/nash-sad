@@ -144,7 +144,7 @@ useEffect(() => {
   animate={{ opacity: 1 }}
   transition={{ 
     delay: 2,
-    duration: 1
+    duration: 2
   }}
 >
 
