@@ -94,9 +94,9 @@ export default function Production() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="md:text-6xl text-2xl font-bold text-green-600">
-              <AnimatedCounter value={5.5} decimalPlaces={1} /> <span className="block md:text-xl text-lg font-semibold">{t('production.area')}</span>
+              <AnimatedCounter value={5.5} decimalPlaces={1} /> <span className="block  font-semibold">{t('production.area')}</span>
             </h3>
-            <p className="text-gray-600 leading-[1.2] w-[100px]">{t('production.production_area')}</p>
+            <p className="text-gray-600 text-sm md:text-xl leading-[1.2] w-[100px]">{t('production.production_area')}</p>
           </motion.div>
           {/* ~~~~~~~~~~~~~~~~~~~~2 */}
           <motion.div 
@@ -106,10 +106,10 @@ export default function Production() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="md:text-6xl text-3xl font-bold text-green-600">
+            <h3 className="md:text-6xl text-2xl font-bold text-green-600">
               <AnimatedCounter value={3} /> <span className="block md:text-xl text-lg font-semibold">{t('production.unit')}</span>
             </h3>
-            <p className="text-gray-600 leading-[1.2] w-[100px]">{t('production.large_complexes')}</p>
+            <p className="text-gray-600 text-sm md:text-xl leading-[1.2] w-[100px]">{t('production.large_complexes')}</p>
           </motion.div>
           {/* ~~~~~~~~~~~~~~~~~~~~3 */}
           <motion.div 
@@ -119,10 +119,10 @@ export default function Production() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <h3 className="md:text-6xl text-3xl font-bold text-green-600">
+            <h3 className="md:text-6xl text-2xl font-bold text-green-600">
               <AnimatedCounter value={20} /><span className="block md:text-xl text-lg font-semibold">{t('production.over')}</span>
             </h3>
-            <p className="text-gray-600 leading-[1.2] w-[100px]">{t('production.product_types')}</p>
+            <p className="text-gray-600 text-sm md:text-xl leading-[1.2] w-[100px]">{t('production.product_types')}</p>
           </motion.div>
         </div>
         
