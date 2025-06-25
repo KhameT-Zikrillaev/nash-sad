@@ -91,3 +91,11 @@ input{
   }
 }
 /* globals.css */
+@media (min-width: 1921px) {
+  .custom-hero-margin {
+    margin-top: -220px;
+  }
+  .custom-intro-linear-top{
+   bottom: -100px;
+  }
+}

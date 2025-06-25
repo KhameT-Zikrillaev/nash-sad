@@ -136,7 +136,7 @@ useEffect(() => {
  
 {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ линия 4 для свипер~~~~~~~~~~~~~~~~~~~~~~~~ */}
        <motion.div 
-  className='container w-full h-[500px]  -bottom-[150px] sm:-bottom-[130px]  xl:-bottom-[170px] relative z-50 flex justify-center items-end pb-4'
+  className='container w-full h-[500px]  -bottom-[150px] sm:-bottom-[130px]  xl:-bottom-[170px] custom-intro-linear-top  relative z-50 flex justify-center items-end pb-4'
   initial={{ opacity: 0}}
   animate={{ opacity: 1 }}
   transition={{ 
