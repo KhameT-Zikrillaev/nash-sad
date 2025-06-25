@@ -137,7 +137,7 @@ export default function Section2() {
                     <Image
                       src={card?.imageUrl}
                       alt={card.titleUz}
-                      className="max-w-[220px] w-full object-contain mb-4 transition-all duration-300 group-hover:drop-shadow-[5px_20px_10px_rgba(0,0,0,0.9)]"
+                      className="max-w-[220px] w-full object-contain mb-4 transition-all duration-300 group-hover:drop-shadow-[0_12px_2px_rgba(0,0,0,0.3)]"
                       width={220}
                       height={220}
                     />

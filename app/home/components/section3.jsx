@@ -212,7 +212,7 @@ export default function Section3() {
             {/* Верхняя карточка с первой новостью */}
             {news.length > 0 && (
               <motion.div 
-                className="bg-orange-200 rounded-[60px] md:h-[350px] h-[250px] w-full relative overflow-hidden p-0"
+                className="bg-orange-200 cursor-pointer rounded-[60px] md:h-[350px] h-[250px] w-full relative overflow-hidden p-0"
                 initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -246,16 +246,10 @@ export default function Section3() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <p className="text-white font-semibold leading-tight line-clamp-2">
+                  <p className="text-white w-full text-center font-semibold leading-tight line-clamp-2">
                     {news[0].description}
                   </p>
-                  <motion.span 
-                    className="text-white text-[16px] cursor-pointer font-semibold bg-transparent border-none"
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    {t('section3.More')}&gt;
-                  </motion.span>
+            
                 </motion.div>
               </motion.div>
             )}
@@ -282,7 +276,7 @@ export default function Section3() {
             >
            
            <motion.div 
-              className="bg-green-700 rounded-[60px]  flex flex-col justify-between text-white"
+              className="bg-green-700 cursor-pointer rounded-[60px]  flex flex-col justify-between text-white"
               whileHover={{ scale: 0.99 }}
               onClick={() => router.push(`/news/${news[1].id}`)}
             >
@@ -312,18 +306,12 @@ export default function Section3() {
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
                 >
-                  <h3 className="text-white text-lg md:text-xl font-bold mb-2 line-clamp-2">
+                  <h3 className="text-white w-full text-center text-lg md:text-xl font-bold mb-2 line-clamp-2">
                     {news[1].title}
                   </h3>
-                  <p className="text-white text-sm mb-3 line-clamp-2">
+                  <p className="text-white w-full text-center text-sm mb-3 line-clamp-2">
                     {news[1].description}
                   </p>
-                  <motion.span 
-                    className=" cursor-pointer text-white text-sm font-semibold inline-flex items-center hover:underline self-end"
-                    whileHover={{ x: 5 }}
-                  >
-                    {t('section3.More')} &gt;
-                  </motion.span>
                 </motion.div>
               </motion.div>
             </motion.div>

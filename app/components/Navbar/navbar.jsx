@@ -142,7 +142,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-2 w-24 bg-white rounded-xl shadow-2xl z-30 py-2 ring-1 ring-[#159143]/10"
+                  className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-28 bg-white rounded-xl shadow-2xl z-30 py-1 ring-1 ring-[#159143]/10"
                   onMouseLeave={() => setLangOpen(false)}
                 >
                   {LANGS.map((l) => (
@@ -150,7 +150,7 @@ export default function Navbar() {
                       key={l.code}
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.97 }}
-                      className={`flex items-center gap-2 px-4 py-2 text-base cursor-pointer transition font-semibold rounded-lg
+                      className={`flex items-center gap-2 px-4 py-2 text-base cursor-pointer transition font-semibold rounded-lg min-h-[40px] h-full w-full"
                         ${i18n.language === l.code ? 'bg-[#32ba4e] text-white shadow' : 'text-[#159143] hover:bg-[#eafbee]'}`}
                       onClick={() => {
                         i18n.changeLanguage(l.code);
