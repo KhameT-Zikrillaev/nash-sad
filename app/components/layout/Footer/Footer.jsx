@@ -88,7 +88,7 @@ export default function Footer() {
             whileInView="visible"
             viewport={{ once: false }}  // Изменено на false для повторной анимации
             variants={fruitAnimations}
-            className='absolute  -mt-[120px] sm:-mt-[100px] z-10 md:-mt-[160px] w-[160px] sm:w-[250px]  left-[calc(50%-80px)] sm:left-[-2%] md:left-[4%] lg:left-[5%] xl:left-[9%] sm:top-[55px] md:top-[125px] xl:top-[125px] z-0'
+            className='absolute  -mt-[120px] sm:-mt-[100px] z-10 md:-mt-[160px] w-[160px] sm:w-[250px]  left-[calc(50%-80px)] sm:left-[-2%] md:left-[4%] lg:left-[5%] xl:left-[9%] sm:top-[55px] md:top-[125px] xl:top-[165px] z-0'
           >
             <Image 
               src={footerfruitphoto} 
