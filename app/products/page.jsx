@@ -203,10 +203,10 @@ export default function ProductSelectionPage() {
               {selectedFruit?.imagecontent && (
                 <motion.div
                   key={`image-${selectedFruit.id}`}
-                  initial={{ y: -100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  initial={{ x: -100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className=" w-[250px] h-[250px] md:w-[350px] md:h-[350px] md:absolute left-0 md:bottom-[-200px] bottom-0 block"
+                  className="w-[250px] h-[250px] md:w-[350px] md:h-[350px] md:absolute left-0 md:bottom-[-200px] bottom-0 block"
                 >
                   <Image
                     src={selectedFruit.imagecontent}
@@ -258,8 +258,8 @@ export default function ProductSelectionPage() {
             {selectedFruit?.imagedetalies && (
               <motion.div
                 key={`details-${selectedFruit?.id || 'default'}`}
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="w-[50%] h-full"
               >
