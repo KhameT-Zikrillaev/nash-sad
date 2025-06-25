@@ -82,7 +82,7 @@ export default function Section2() {
 
         {/* left abstract */}
         <motion.div 
-          className='absolute max-w-[120px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[300px] w-full left-[5%]   top-[10%] sm:-top-[10%]'
+          className='absolute max-w-[120px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[300px] w-full left-[5%]   top-[10%] sm:-top-[10%] xl:-top-[30%]'
           initial={{ y: -300, opacity: 0 }}
           animate={{ 
             y: [-300, -100, -120, -100],

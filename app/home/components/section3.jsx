@@ -115,14 +115,16 @@ export default function Section3() {
       try {
         const response = await api.get('/news');
         // Преобразуем данные из API в нужный формат
-        const formattedData = response.data?.data?.map(item => ({
-          id: item.id,
-          title: getLocalizedField('title', item),
-          description: getLocalizedField('description', item),
-          image: item.image,
-          date: new Date(item.createdAt).toLocaleDateString('ru-RU'),
-          ...item
-        })) || [];
+        const formattedData = (response.data?.data || [])
+          .map(item => ({
+            id: item.id,
+            title: getLocalizedField('title', item),
+            description: getLocalizedField('description', item),
+            image: item.image,
+            date: new Date(item.createdAt).toLocaleDateString('ru-RU'),
+            ...item
+          }))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         
         console.log('News data loaded:', formattedData);
         setNews(formattedData);

@@ -2,10 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from "next/image";
-import bg1 from '@/public/images/bg.webp'
-import bg2 from '@/public/images/24.png'
-import bg3 from '@/public/images/bg.webp'
-import bg4 from '@/public/images/24.png'
 import styles from './section1.module.css'
 import { useState, useEffect } from 'react';
 import api from '@/lib/api';
@@ -18,6 +14,7 @@ useEffect(() => {
   const fetchImages = async () => {
     try {
       const response = await api.get('/intros');
+      console.log(response.data);
       setImages(response?.data || []);
     } catch (error) {
       console.error('Ошибка при загрузке изображений:', error);
