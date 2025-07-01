@@ -286,7 +286,7 @@ export default function Navbar() {
        animate={{ y: 0, opacity: 1 }}
        transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
        className='absolute z-0 top-0 w-full'>
-       <div className='max-w-[1920px]  border  mx-auto overflow-hidden lg:mt-[-50px] xl:mt-[-140px] custom-hero-margin'>
+       <div className='max-w-[1920px]  mx-auto overflow-hidden lg:mt-[-50px] xl:mt-[-140px] custom-hero-margin'>
          <svg viewBox="0 0 1440 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
            <path
              fill="#00c853"
