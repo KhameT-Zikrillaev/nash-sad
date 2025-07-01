@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Section1 from "./home/components/section1";
 import Section2 from "./home/components/section2";
 import Section3 from "./home/components/section3";
+import Sectiontestinstagram from "./home/components/sectiontestinstagram";
 
 export default function Home() {
   const [showSections, setShowSections] = useState(false);
@@ -24,6 +25,7 @@ export default function Home() {
         <>
           <Section2 />
           <Section3 />
+          {/* <Sectiontestinstagram /> */}
         </>
       ) : (
         <div className="w-full h-screen bg-white"></div>
