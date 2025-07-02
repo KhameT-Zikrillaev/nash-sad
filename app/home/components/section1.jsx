@@ -149,7 +149,8 @@ useEffect(() => {
   
 <div className=' w-full  '>
 
-<div className="flex gap-2  h-[300px]  justify-center    px-[50px] sm:px-[160px]   md:px-[150px] mt-[120px] md:mt-[120px] sm:mt-[130px] md:mt-[120px] lg:mt-[50px] xl:mt-[20px]  2xl:mt-[50px]  w-full  absolute top-0 left-0  items-center">
+<div className="flex gap-2  h-[300px]  justify-center    px-[50px] sm:px-[160px]   md:px-[150px] mt-[130px] sm:mt-[120px] md:mt-[100px] lg:mt-[70px] xl:mt-[1.125rem] 2xl:mt-[1.875rem]
+  w-full  absolute top-0 left-0  items-center">
   {/* Линия 1 */}
   <svg width="24%" height="auto" viewBox="0 0 1000 300" className="rotate-180" onClick={() => goToSlide(0)}>
     <defs>

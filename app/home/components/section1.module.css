@@ -2,7 +2,7 @@
   clip-path: ellipse(55% 100% at 50% 0%);
   
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .sectionClip {
     clip-path: ellipse(75% 100% at 50% 0%);
   }
